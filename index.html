@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./global.css">
+  <link rel="stylesheet" href="./calculator.css">
+  <title>Calculator</title>
+</head>
+<body>
+  <div class="calculator-container">
+    <p>Calculator</p>
+    <header>
+      <div>
+        <button class="menu">
+          <img src="./assets/menu.svg" alt="menu bars">
+        </button>
+        <h1>Standard</h1>
+      </div>
+      <button class="history">
+        <img src="./assets/history.svg" alt="history">
+      </button>
+    </header>
+    <div class="equation">
+      <span class="operation">2 × 5 =</span>
+      <output>10</output>
+    </div>
+    <div class="memory-row">
+      <button class="disabled">MC</button>
+      <button class="disabled">MR</button>
+      <button>M+</button>
+      <button>M-</button>
+      <button>MS</button>
+      <button class="disabled">
+        <img src="./assets/unlicensed/show-memory.svg" alt="show memory">
+      </button>
+    </div>
+    <div class="keyboard">
+      <!-- first row -->
+      <button class="light-gray">
+        <img src="./assets/percentage.svg" alt="percentage">
+      </button>
+      <button class="light-gray clear">CE</button>
+      <button class="light-gray clear">C</button>
+      <button class="light-gray">
+        <img src="./assets/unlicensed/backspace.svg" alt="backspace">
+      </button>
+      <!-- second row -->
+      <button class="light-gray">
+        <img
+          src="./assets/unlicensed/multiplicative-inverse.svg"
+          alt="multiplicative inverse"
+        >
+      </button>
+      <button class="light-gray">
+        <img src="./assets/unlicensed/number-squared.svg" alt="number squared">
+      </button>
+      <button class="light-gray">
+        <img src="./assets/unlicensed/square-root.svg" alt="square root">
+      </button>
+      <button class="light-gray">÷</button>
+      <!-- third row -->
+      <button class="white">7</button>
+      <button class="white">8</button>
+      <button class="white">9</button>
+      <button class="light-gray">×</button>
+      <!-- fourth row -->
+      <button class="white">4</button>
+      <button class="white">5</button>
+      <button class="white">6</button>
+      <button class="light-gray">–</button>
+      <!-- fifth row -->
+      <button class="white">1</button>
+      <button class="white">2</button>
+      <button class="white">3</button>
+      <button class="light-gray">+</button>
+      <!-- sixth row -->
+      <button
+        class="white"
+        style="border-radius: 0 0 0 5px;"
+      >
+        <img src="./assets/plus-minus.svg" alt="plus minus">
+      </button>
+      <button class="white">0</button>
+      <button class="white">,</button>
+      <button 
+        class="dark-gray"
+        style="border-radius: 0 0 5px 0;"
+      >=</button>
+    </div>
+  </div>
+</body>
+</html>

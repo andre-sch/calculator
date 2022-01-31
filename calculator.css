@@ -1,0 +1,122 @@
+.calculator-container {
+  width: 356px;
+  padding: 8px 5px 5px;
+  background: var(--background);
+  border-radius: 8px;
+}
+
+.calculator-container > p {
+  margin-left: 10px;
+  font-weight: 400;
+  font-size: .75rem;
+  color: #7B6A6A;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px;
+}
+header div {
+  display: flex;
+}
+header button {
+  height: 25px;
+  transition: filter .1s;
+}
+header button:hover {
+  filter: opacity(.8);
+}
+
+header .menu {
+  margin-right: 15px;
+}
+header h1 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--black);
+}
+
+.equation {
+  margin: 0 15px;
+  font-family: 'Poppins', sans-serif;
+  text-align: right;
+}
+.equation span {
+  font-size: 0.8125rem;
+  font-weight: 300;
+  color: var(--keyboard-text);
+}
+.equation output {
+  display: block;
+  font-size: 2.25rem;
+  font-weight: 500;
+  color: var(--black);
+
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
+.memory-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 15px 2px;
+}
+.memory-row button {
+  width: 51px;
+  height: 31px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--keyboard-text);
+  transition: box-shadow .1s, background-color .1s;
+}
+.memory-row button.disabled {
+  color: var(--disabled);
+}
+
+.keyboard {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 55px;
+  gap: 2px;
+}
+
+.keyboard button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: var(--keyboard-text);
+  transition: box-shadow .1s, filter .1s;
+}
+.keyboard button.clear {
+  font-size: 18px;
+}
+
+.keyboard button.white {
+  font-weight: 600;
+  background-color: var(--white);
+}
+.keyboard button.light-gray {
+  background-color: var(--light-gray);
+}
+.keyboard button.dark-gray {
+  font-weight: 600;
+  background-color: var(--dark-gray);
+}
+
+.memory-row button:not(.disabled):hover {
+  background-color: rgba(0, 0, 0, .05);
+}
+.calculator-container .keyboard button:hover {
+  filter: brightness(.8);
+}
+.memory-row button:not(.disabled):hover,
+.calculator-container .keyboard button:hover {
+  box-shadow:
+    inset 0 0 1px 1px rgba(0, 0, 0, .25),
+    inset 0 0 10px 1px rgba(0, 0, 0, .05);
+}
