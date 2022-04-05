@@ -46,12 +46,12 @@
       </button>
       <button
         class="light-gray clear"
-        onclick="clearEntry()"
+        onclick="entry.clear()"
       >CE</button>
       <button class="light-gray clear">C</button>
       <button
         class="light-gray"
-        onclick="removeCharacter()"
+        onclick="entry.removeCharacter()"
       >
         <img src="./assets/unlicensed/backspace.svg" alt="backspace">
       </button>
@@ -72,61 +72,61 @@
       <!-- third row -->
       <button
         class="white"
-        onclick="addCharacter('7')"
+        onclick="entry.addCharacter('7')"
       >7</button>
       <button
         class="white"
-        onclick="addCharacter('8')"
+        onclick="entry.addCharacter('8')"
       >8</button>
       <button
         class="white"
-        onclick="addCharacter('9')"
+        onclick="entry.addCharacter('9')"
       >9</button>
       <button
         class="light-gray">×</button>
       <!-- fourth row -->
       <button
         class="white"
-        onclick="addCharacter('4')"
+        onclick="entry.addCharacter('4')"
       >4</button>
       <button
         class="white"
-        onclick="addCharacter('5')"
+        onclick="entry.addCharacter('5')"
       >5</button>
       <button
         class="white"
-        onclick="addCharacter('6')"
+        onclick="entry.addCharacter('6')"
       >6</button>
       <button class="light-gray">–</button>
       <!-- fifth row -->
       <button
         class="white"
-        onclick="addCharacter('1')"
+        onclick="entry.addCharacter('1')"
       >1</button>
       <button
         class="white"
-        onclick="addCharacter('2')"
+        onclick="entry.addCharacter('2')"
       >2</button>
       <button
         class="white"
-        onclick="addCharacter('3')"
+        onclick="entry.addCharacter('3')"
       >3</button>
       <button class="light-gray">+</button>
       <!-- sixth row -->
       <button
         class="white"
         style="border-radius: 0 0 0 5px;"
-        onclick="oppositeOfCurrentEntry()"
+        onclick="entry.toggleSign()"
       >
         <img src="./assets/plus-minus.svg" alt="plus minus">
       </button>
       <button
         class="white"
-        onclick="addCharacter('0')"
+        onclick="entry.addCharacter('0')"
       >0</button>
       <button
         class="white"
-        onclick="addCharacter('.')"
+        onclick="entry.addCharacter('.')"
       >.</button>
       <button 
         class="dark-gray"

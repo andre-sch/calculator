@@ -1,88 +1,88 @@
 const output = document.querySelector('.equation output')
-var isNegativeNumber = false
-var isDecimalNumber = false
-var currentEntry = '0'
 
-function addCharacter(character) {
-  const MAX_LENGTH = 16
-  const cleanedCurrentEntry = currentEntry
-    .replace(/[-\.]|(?<=\b)0/g, '')
+const entry = {
+  isNegativeNumber: false,
+  isDecimalNumber: false,
+  current: '0',
+  toggleSign() {
+    if (entry.current == '0') return
+    entry.isNegativeNumber = !entry.isNegativeNumber
+    entry.current = entry.current.startsWith('-')
+      ? entry.current.slice(1)
+      : '-' + entry.current
+    entry.showCurrent()
+  },
+  addCharacter(character) {
+    const MAX_LENGTH = 16
+    const cleanedCurrentEntry = entry.current.replace(/[-\.]|(?<=\b)0/g, '')
+  
+    if (cleanedCurrentEntry.length == MAX_LENGTH) return
+    if (character == '.') {
+      if (entry.isDecimalNumber) return 
+      else entry.isDecimalNumber = true
+    }
+  
+    if (entry.current == '0' && character != '.') entry.current = character
+    else entry.current = entry.current + character
 
-  if (cleanedCurrentEntry.length == MAX_LENGTH) return
-  if (isDecimalNumber && character == '.') return
+    entry.showCurrent()
+  },
+  removeCharacter() {
+    const entryCharacters = entry.current.split('')
+  
+    const removedCharacter = entryCharacters.pop()
+    if (removedCharacter == '.') entry.isDecimalNumber = false
+  
+    switch (entryCharacters.join('')) {
+      case '':
+      case '-':
+      case '-0':
+        entry.current = '0'
+        entry.isNegativeNumber = false
+        break
+      default:
+        entry.current = entryCharacters.join('')
+    }
+    entry.showCurrent()
+  },
+  showCurrent() {
+    const formattedCurrentEntry = entry.addThousandsSeparator()
+    output.value = formattedCurrentEntry 
+  },
+  addThousandsSeparator() {
+    const separator = ','
+    var charactersToSeparate = entry.current.split('')
+  
+    if (entry.current.includes('.')) {
+      var [wholePart, decimalPart] = entry.current.split('.')
+      charactersToSeparate = wholePart.split('')
+    }
+  
+    if (entry.isNegativeNumber) charactersToSeparate.shift()
+  
+    const FIRST_DIGIT = 1
+    const numberOfDigits = charactersToSeparate.length
+    const numberOfSeparators = Math.floor(
+      (numberOfDigits - FIRST_DIGIT) / 3
+    )
+  
+    charactersToSeparate.reverse()
+    let index = numberOfSeparators
+    while (index > 0) {
+      charactersToSeparate.splice(3 * index, 0, separator)
+      index = index - 1
+    }
+    const separatedCharacters = charactersToSeparate.reverse()
+    if (entry.isNegativeNumber) separatedCharacters.unshift('-')
 
-  if (currentEntry == '0' && character != '.') currentEntry = character
-  else currentEntry = currentEntry + character
-  showCurrentEntry()
-}
-function removeCharacter() {
-  const newCharacters = currentEntry.split('')
-
-  const removedCharacter = newCharacters.pop()
-  if (removedCharacter == '.') isDecimalNumber = false
-
-  switch (newCharacters.join('')) {
-    case '':
-    case '-':
-    case '-0':
-      currentEntry = '0'
-      isNegativeNumber = false
-      break
-    default:
-      currentEntry = newCharacters.join('')
+    var formattedCurrentEntry = separatedCharacters.join('')
+    if (entry.isDecimalNumber) formattedCurrentEntry += `.${decimalPart || ''}`
+    return formattedCurrentEntry
+  },
+  clear() {
+    entry.isNegativeNumber = false
+    entry.isDecimalNumber = false
+    entry.current = '0'
+    entry.showCurrent()
   }
-  showCurrentEntry()
-}
-
-function oppositeOfCurrentEntry() {
-  if (currentEntry == '0') return
-  isNegativeNumber = !isNegativeNumber
-  currentEntry = `${-(Number(currentEntry))}`
-  showCurrentEntry()
-}
-
-function showCurrentEntry() {
-  const formattedCurrentEntry = addThousandsSeparator()
-  output.value = formattedCurrentEntry 
-}
-
-function addThousandsSeparator() {
-  const separator = ','
-  let charactersToSeparate
-
-  if (currentEntry.includes('.')) {
-    var [wholePart, decimalPart] = currentEntry.split('.')
-    charactersToSeparate = wholePart.split('')
-    isDecimalNumber = true
-  } else charactersToSeparate = currentEntry.split('')
-
-  if (isNegativeNumber) charactersToSeparate.shift()
-
-  const FIRST_DIGIT = 1
-  const numberOfDigits = charactersToSeparate.length
-  const numberOfSeparators = Math.floor(
-    (numberOfDigits - FIRST_DIGIT) / 3
-  )
-
-  const reversedCharacters = charactersToSeparate.reverse()
-  let index = numberOfSeparators
-  while (index > 0) {
-    reversedCharacters.splice(3 * index, 0, separator)
-    index = index - 1
-  }
-
-  const charactersWithSeparator = reversedCharacters.reverse()
-  if (isNegativeNumber) charactersWithSeparator.unshift('-')
-
-  let formattedCurrentEntry = charactersWithSeparator.join('')
-  if (isDecimalNumber) formattedCurrentEntry += `.${decimalPart}`
-
-  return formattedCurrentEntry
-}
-
-function clearEntry() {
-  isNegativeNumber = false
-  isDecimalNumber = false
-  currentEntry = '0'
-  showCurrentEntry()
 }
