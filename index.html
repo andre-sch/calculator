@@ -26,8 +26,8 @@
       </button>
     </header>
     <div class="equation">
-      <span class="operation">2 × 5 =</span>
-      <output>10</output>
+      <span class="operation"></span>
+      <output>0</output>
     </div>
     <div class="memory-row">
       <button class="disabled">MC</button>
@@ -44,9 +44,15 @@
       <button class="light-gray">
         <img src="./assets/percentage.svg" alt="percentage">
       </button>
-      <button class="light-gray clear">CE</button>
+      <button
+        class="light-gray clear"
+        onclick="clearEntry()"
+      >CE</button>
       <button class="light-gray clear">C</button>
-      <button class="light-gray">
+      <button
+        class="light-gray"
+        onclick="removeCharacter()"
+      >
         <img src="./assets/unlicensed/backspace.svg" alt="backspace">
       </button>
       <!-- second row -->
@@ -64,34 +70,70 @@
       </button>
       <button class="light-gray">÷</button>
       <!-- third row -->
-      <button class="white">7</button>
-      <button class="white">8</button>
-      <button class="white">9</button>
-      <button class="light-gray">×</button>
+      <button
+        class="white"
+        onclick="addCharacter('7')"
+      >7</button>
+      <button
+        class="white"
+        onclick="addCharacter('8')"
+      >8</button>
+      <button
+        class="white"
+        onclick="addCharacter('9')"
+      >9</button>
+      <button
+        class="light-gray">×</button>
       <!-- fourth row -->
-      <button class="white">4</button>
-      <button class="white">5</button>
-      <button class="white">6</button>
+      <button
+        class="white"
+        onclick="addCharacter('4')"
+      >4</button>
+      <button
+        class="white"
+        onclick="addCharacter('5')"
+      >5</button>
+      <button
+        class="white"
+        onclick="addCharacter('6')"
+      >6</button>
       <button class="light-gray">–</button>
       <!-- fifth row -->
-      <button class="white">1</button>
-      <button class="white">2</button>
-      <button class="white">3</button>
+      <button
+        class="white"
+        onclick="addCharacter('1')"
+      >1</button>
+      <button
+        class="white"
+        onclick="addCharacter('2')"
+      >2</button>
+      <button
+        class="white"
+        onclick="addCharacter('3')"
+      >3</button>
       <button class="light-gray">+</button>
       <!-- sixth row -->
       <button
         class="white"
         style="border-radius: 0 0 0 5px;"
+        onclick="oppositeOfCurrentEntry()"
       >
         <img src="./assets/plus-minus.svg" alt="plus minus">
       </button>
-      <button class="white">0</button>
-      <button class="white">,</button>
+      <button
+        class="white"
+        onclick="addCharacter('0')"
+      >0</button>
+      <button
+        class="white"
+        onclick="addCharacter('.')"
+      >.</button>
       <button 
         class="dark-gray"
         style="border-radius: 0 0 5px 0;"
       >=</button>
     </div>
   </div>
+  <script src="./src/entry.js"></script>
 </body>
 </html>

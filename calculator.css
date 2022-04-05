@@ -44,6 +44,8 @@ header h1 {
   text-align: right;
 }
 .equation span {
+  display: inline-block;
+  height: 20px;
   font-size: 0.8125rem;
   font-weight: 300;
   color: var(--keyboard-text);
