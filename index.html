@@ -30,18 +30,18 @@
       <output>0</output>
     </div>
     <div class="memory-row">
-      <button class="disabled">MC</button>
-      <button class="disabled">MR</button>
-      <button>M+</button>
-      <button>M-</button>
-      <button>MS</button>
-      <button class="disabled">
+      <button class="disabled" disabled>MC</button>
+      <button class="disabled" disabled>MR</button>
+      <button class="enabled">M+</button>
+      <button class="enabled">M-</button>
+      <button class="enabled">MS</button>
+      <button class="disabled" disabled>
         <img src="./assets/unlicensed/show-memory.svg" alt="show memory">
       </button>
     </div>
     <div class="keyboard">
       <!-- first row -->
-      <button class="light-gray">
+      <button class="light-gray enabled">
         <img src="./assets/percentage.svg" alt="percentage">
       </button>
       <button
@@ -60,7 +60,7 @@
       </button>
       <!-- second row -->
       <button
-        class="light-gray"
+        class="light-gray enabled"
         onclick="operation.multiplicativeInverse()"
       >
         <img
@@ -69,75 +69,75 @@
         >
       </button>
       <button
-        class="light-gray"
+        class="light-gray enabled"
         onclick="operation.square()"
       >
         <img src="./assets/unlicensed/number-squared.svg" alt="number squared">
       </button>
       <button
-        class="light-gray"
+        class="light-gray enabled"
         onclick="operation.squareRoot()"
       >
         <img src="./assets/unlicensed/square-root.svg" alt="square root">
       </button>
-      <button class="light-gray">÷</button>
+      <button class="light-gray enabled">÷</button>
       <!-- third row -->
       <button
-        class="white"
+        class="white number"
         onclick="entry.addCharacter('7')"
       >7</button>
       <button
-        class="white"
+        class="white number"
         onclick="entry.addCharacter('8')"
       >8</button>
       <button
-        class="white"
+        class="white number"
         onclick="entry.addCharacter('9')"
       >9</button>
       <button
-        class="light-gray">×</button>
+        class="light-gray enabled">×</button>
       <!-- fourth row -->
       <button
-        class="white"
+        class="white number"
         onclick="entry.addCharacter('4')"
       >4</button>
       <button
-        class="white"
+        class="white number"
         onclick="entry.addCharacter('5')"
       >5</button>
       <button
-        class="white"
+        class="white number"
         onclick="entry.addCharacter('6')"
       >6</button>
-      <button class="light-gray">–</button>
+      <button class="light-gray enabled">–</button>
       <!-- fifth row -->
       <button
-        class="white"
+        class="white number"
         onclick="entry.addCharacter('1')"
       >1</button>
       <button
-        class="white"
+        class="white number"
         onclick="entry.addCharacter('2')"
       >2</button>
       <button
-        class="white"
+        class="white number"
         onclick="entry.addCharacter('3')"
       >3</button>
-      <button class="light-gray">+</button>
+      <button class="light-gray enabled">+</button>
       <!-- sixth row -->
       <button
-        class="white"
+        class="white enabled"
         style="border-radius: 0 0 0 5px;"
         onclick="entry.toggleSign()"
       >
         <img src="./assets/plus-minus.svg" alt="plus minus">
       </button>
       <button
-        class="white"
+        class="white number"
         onclick="entry.addCharacter('0')"
       >0</button>
       <button
-        class="white"
+        class="white enabled"
         onclick="entry.addCharacter('.')"
       >.</button>
       <button 
@@ -147,6 +147,7 @@
     </div>
   </div>
   <script src="./src/entry.js"></script>
+  <script src="./src/errorMode.js"></script>
   <script src="./src/operation.js"></script>
   <script>
     function clearEverything() {
