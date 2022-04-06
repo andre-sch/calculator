@@ -50,6 +50,8 @@ const entry = {
     output.value = formattedCurrentEntry 
   },
   addThousandsSeparator() {
+    if (entry.current.includes('e')) return entry.current
+
     const separator = ','
     var charactersToSeparate = entry.current.split('')
   
