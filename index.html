@@ -48,7 +48,10 @@
         class="light-gray clear"
         onclick="entry.clear()"
       >CE</button>
-      <button class="light-gray clear">C</button>
+      <button
+        class="light-gray clear"
+        onclick="clearEverything()"
+      >C</button>
       <button
         class="light-gray"
         onclick="entry.removeCharacter()"
@@ -145,5 +148,11 @@
   </div>
   <script src="./src/entry.js"></script>
   <script src="./src/operation.js"></script>
+  <script>
+    function clearEverything() {
+      document.querySelector('.operation').textContent = ''
+      entry.clear()
+    }
+  </script>
 </body>
 </html>
