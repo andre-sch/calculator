@@ -86,5 +86,12 @@ const entry = {
     entry.isDecimalNumber = false
     entry.current = '0'
     entry.showCurrent()
+  },
+  setNewAttributes() {
+    if (entry.current.startsWith('-')) entry.isNegativeNumber = true
+    else entry.isNegativeNumber = false
+
+    if (entry.current.includes('.')) entry.isDecimalNumber = true
+    else entry.isDecimalNumber = false
   }
 }
