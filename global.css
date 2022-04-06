@@ -14,10 +14,11 @@
   --white: #FAFAFA;
   --light-gray: #DBD9D9;
   --background: rgba(244, 244, 244, 0.75);
+  --keyboard-disabled: #bbbaba;
   --dark-gray: #978D8C;
   --keyboard-text: #3C3C3C;
   --black: #101010;
-  --disabled: rgba(0, 0, 0, .2);
+  --memory-disabled: rgba(0, 0, 0, .2);
 }
 
 ::-moz-selection {
@@ -43,4 +44,7 @@ body {
 
 button {
   cursor: pointer;
+}
+button:disabled {
+  cursor: default;
 }

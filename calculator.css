@@ -75,8 +75,8 @@ header h1 {
   color: var(--keyboard-text);
   transition: box-shadow .1s, background-color .1s;
 }
-.memory-row button.disabled {
-  color: var(--disabled);
+.memory-row button:disabled {
+  color: var(--memory-disabled);
 }
 
 .keyboard {
@@ -98,6 +98,13 @@ header h1 {
   font-size: 18px;
 }
 
+.keyboard button:disabled {
+  color: var(--keyboard-disabled);
+}
+.keyboard button:disabled img {
+  opacity: .2;
+}
+
 .keyboard button.white {
   font-weight: 600;
   background-color: var(--white);
@@ -110,14 +117,14 @@ header h1 {
   background-color: var(--dark-gray);
 }
 
-.memory-row button:not(.disabled):hover {
+.memory-row button:not(:disabled):hover {
   background-color: rgba(0, 0, 0, .05);
 }
-.calculator-container .keyboard button:hover {
+.calculator-container .keyboard button:not(:disabled):hover {
   filter: brightness(.8);
 }
-.memory-row button:not(.disabled):hover,
-.calculator-container .keyboard button:hover {
+.memory-row button:not(:disabled):hover,
+.calculator-container .keyboard button:not(:disabled):hover {
   box-shadow:
     inset 0 0 1px 1px rgba(0, 0, 0, .15),
     inset 0 0 10px 1px rgba(0, 0, 0, .025);
