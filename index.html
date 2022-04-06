@@ -56,16 +56,25 @@
         <img src="./assets/unlicensed/backspace.svg" alt="backspace">
       </button>
       <!-- second row -->
-      <button class="light-gray">
+      <button
+        class="light-gray"
+        onclick="operation.multiplicativeInverse()"
+      >
         <img
           src="./assets/unlicensed/multiplicative-inverse.svg"
           alt="multiplicative inverse"
         >
       </button>
-      <button class="light-gray">
+      <button
+        class="light-gray"
+        onclick="operation.square()"
+      >
         <img src="./assets/unlicensed/number-squared.svg" alt="number squared">
       </button>
-      <button class="light-gray">
+      <button
+        class="light-gray"
+        onclick="operation.squareRoot()"
+      >
         <img src="./assets/unlicensed/square-root.svg" alt="square root">
       </button>
       <button class="light-gray">÷</button>
@@ -135,5 +144,6 @@
     </div>
   </div>
   <script src="./src/entry.js"></script>
+  <script src="./src/operation.js"></script>
 </body>
 </html>
