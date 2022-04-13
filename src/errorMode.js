@@ -1,9 +1,10 @@
 const eventCallback = event => errorMode.hide(event)
 
 const errorMode = {
-  display() {
-    const buttonsToDisable = document.getElementsByClassName('enabled')
+  display(message) {
+    output.value = message
 
+    const buttonsToDisable = document.getElementsByClassName('enabled')
     while (buttonsToDisable.length > 0) {
       const element = buttonsToDisable[0]
       element.classList.replace('enabled', 'disabled')

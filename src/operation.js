@@ -1,38 +1,69 @@
-const operationDisplay = document.querySelector('.operation')
+const operationContainer = document.querySelector('.operation')
 
 const operation = {
-  multiplicativeInverse() {
-    if (entry.current == '0') {
-      operationDisplay.textContent = '1/( 0 )'
-      output.value = 'Cannot divide by zero'
-      errorMode.display()
-      return
+  matchContentAfterSign: /(?<=\s[-+×÷]).+/,
+  mathFunctions: {
+    multiplicativeInverse() {
+      if (Number(entry.current) == 0) {
+        operationContainer.textContent = '1/( 0 )'
+        errorMode.display('Cannot divide by zero')
+        return
+      }
+      this.display('1/')
+  
+      const result = 1 / Number(entry.current)
+      operation.end(result)
+      entry.isOverwritingEnabled = true
+    },
+    square() {
+      this.display('sqr')
+      
+      const result = Number(entry.current) ** 2
+      operation.end(result)
+      entry.isOverwritingEnabled = true
+    },
+    squareRoot() {
+      this.display('√')
+  
+      if (entry.current.startsWith('-')) {
+        errorMode.display('Invalid input')
+        return
+      }
+  
+      const result = Math.sqrt(Number(entry.current))
+      operation.end(result)
+      entry.isOverwritingEnabled = true
+    },
+    negate() {
+      if (entry.isOverwritingEnabled) {
+        this.display('negate')
+      }
+      entry.toggleSign()
+    },
+    display(mathFunction) {
+      if (entry.previous == null) {
+        if (entry.isOverwritingEnabled && !operationContainer.textContent.includes('=')) {
+          operationContainer.textContent = `${mathFunction}( ${operationContainer.textContent} )`
+        } else {
+          operationContainer.textContent = `${mathFunction}( ${Number(entry.current)} )`
+        }
+      }
+      else {
+        const matchContent = operationContainer.textContent
+          .match(operation.matchContentAfterSign)
+        const withoutContentAfterSign = operationContainer.textContent
+          .replace(operation.matchContentAfterSign, '')
+
+        if (matchContent) {
+          var newContentAfterSign = ` ${mathFunction}(${matchContent[0]} )`
+        }
+        else {
+          var newContentAfterSign = ` ${mathFunction}( ${Number(entry.current)} )`
+        }
+        operationContainer.textContent = withoutContentAfterSign + newContentAfterSign
+      }
     }
-    operationDisplay.textContent =
-    `1/( ${operationDisplay.textContent || entry.current} )`
-
-    const result = 1 / Number(entry.current)
-    // this.displayResult(result)
   },
-  square() {
-    operationDisplay.textContent =
-      `sqr( ${operationDisplay.textContent || entry.current} )`
-    
-    const result = Number(entry.current) ** 2
-    // this.displayResult(result)
-  },
-  squareRoot() {
-    operationDisplay.textContent =
-      `√( ${operationDisplay.textContent || entry.current} )`
-
-    if (entry.current.includes('-')) {
-      output.value = 'Invalid input'
-      errorMode.display()
-      return
-    }
-
-    const result = Math.sqrt(Number(entry.current))
-    // this.displayResult(result)
   },
   end(result) {
     entry.current = operation.formatResult(result)

@@ -3,6 +3,7 @@ const output = document.querySelector('.equation output')
 const entry = {
   isNegativeNumber: false,
   isDecimalNumber: false,
+  isOverwritingEnabled: false,
   current: '0',
   toggleSign() {
     if (entry.current == '0') return
