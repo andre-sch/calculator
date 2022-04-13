@@ -105,12 +105,6 @@ const entry = {
     if (entry.isDecimalNumber) formattedCurrentEntry += `.${decimalPart || ''}`
     return formattedCurrentEntry
   },
-  clear() {
-    entry.isNegativeNumber = false
-    entry.isDecimalNumber = false
-    entry.current = '0'
-    entry.showCurrent()
-  },
   setNewAttributes() {
     if (entry.current.startsWith('-')) entry.isNegativeNumber = true
     else entry.isNegativeNumber = false
@@ -121,5 +115,20 @@ const entry = {
   savePrevious() {
     entry.previous = Number(entry.current)
     entry.isOverwritingEnabled = true
+  },
+  clear() {
+    entry.isNegativeNumber = false
+    entry.isDecimalNumber = false
+    entry.isOverwritingEnabled = false
+
+    if (entry.previous) {
+      operationContainer.textContent = operationContainer.textContent
+        .replace(operation.matchContentAfterSign, '')
+    } else if (operationContainer.textContent.includes('=')) {
+      operationContainer.textContent = ''
+    }
+
+    entry.current = '0'
+    entry.showCurrent()
   }
 }

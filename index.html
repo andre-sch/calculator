@@ -163,7 +163,8 @@
   <script src="./src/operation.js"></script>
   <script>
     function clearEverything() {
-      document.querySelector('.operation').textContent = ''
+      operation.clear()
+      entry.previous = null
       entry.clear()
     }
   </script>

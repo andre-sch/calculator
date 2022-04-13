@@ -148,5 +148,9 @@ const operation = {
           .replace(trailingZeros, '')
       }
     } else return result.toString()
+  },
+  clear() {
+    operationContainer.textContent = ''
+    operation.last = ''
   }
 }
