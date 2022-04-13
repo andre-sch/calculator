@@ -18,17 +18,39 @@ const entry = {
     const cleanedCurrentEntry = entry.current.replace(/[-\.]|(?<=\b)0\.|e.+/g, '')
 
     if (cleanedCurrentEntry.length == MAX_LENGTH) return
-    if (character == '.') {
-      if (entry.isDecimalNumber) return 
-      else entry.isDecimalNumber = true
-    }
-  
-    if (entry.current == '0' && character != '.') entry.current = character
-    else entry.current = entry.current + character
+    
+    if (entry.isOverwritingEnabled) {
+      entry.isOverwritingEnabled = false
 
+      if (character == '.') entry.current = '0.'
+      else entry.current = character
+      entry.setNewAttributes()
+      
+      if (entry.previous != null) {
+        const withoutContentAfterSign = operationContainer.textContent
+          .replace(operation.matchContentAfterSign, '')
+
+        operationContainer.textContent = withoutContentAfterSign
+      } else if (operationContainer.textContent.includes('=')) {
+        operationContainer.textContent = ''
+      }
+    }
+    else {
+      if (character == '.') {
+        if (entry.isDecimalNumber) return 
+        else entry.isDecimalNumber = true
+        entry.current = entry.current + '.'
+      }
+      else {
+        if (entry.current == '0') entry.current = character
+        else entry.current = entry.current + character
+      }
+    }
     entry.showCurrent()
   },
   removeCharacter() {
+    if (entry.isOverwritingEnabled) return
+
     const entryCharacters = entry.current.split('')
   
     const removedCharacter = entryCharacters.pop()
