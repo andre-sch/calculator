@@ -116,6 +116,31 @@ const operation = {
     entry.savePrevious()
     operation.last = name
   },
+  equal() {
+    if (entry.previous == null) {
+      if (!operationContainer.textContent || operationContainer.textContent.includes('=')) {
+        operationContainer.textContent = `${Number(entry.current)} =`
+      } else operationContainer.textContent += ' ='
+    }
+    else {
+      const hasContentAfterSign = operation.matchContentAfterSign
+        .test(operationContainer.textContent)
+      
+      if (hasContentAfterSign) {
+        operationContainer.textContent += ' ='
+      } else operationContainer.textContent += ` ${Number(entry.current)} =`
+      
+      if (operation.checkDivisionByZero()) return
+
+      const result = operation.basic[operation.last]
+        .execute(entry.previous, Number(entry.current))
+      operation.end(result)
+
+      entry.previous = null
+      operation.last = ''
+    }
+    entry.isOverwritingEnabled = true
+  },
   checkDivisionByZero() {
     if (operation.last == 'division' && Number(entry.current) == 0) {
       operationContainer.textContent = `${entry.previous} ÷ 0`
