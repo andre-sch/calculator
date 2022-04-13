@@ -83,6 +83,28 @@ const operation = {
       }
     }
   },
+  percentage() {
+    if (entry.previous == null) {
+      entry.clear()
+      operationContainer.textContent = '0'
+    }
+    else {
+      const isPercentageRelativeToPreviousEntry =
+        ['addition', 'subtraction'].includes(operation.last)
+
+      const result =
+        (isPercentageRelativeToPreviousEntry ? entry.previous : 1) *
+        (Number(entry.current) / 100)
+
+      operation.end(result)
+      
+      const withoutContentAfterSign = operationContainer.textContent
+        .replace(operation.matchContentAfterSign, '')
+      operationContainer.textContent =
+        `${withoutContentAfterSign} ${Number(entry.current)}`
+    }
+    entry.isOverwritingEnabled = true
+  },
   doBasic(name) {
     const sign = operation.basic[name].sign
     if (entry.previous == null) {
