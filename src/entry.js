@@ -4,6 +4,7 @@ const entry = {
   isNegativeNumber: false,
   isDecimalNumber: false,
   isOverwritingEnabled: false,
+  previous: null,
   current: '0',
   toggleSign() {
     if (entry.current == '0') return
@@ -116,5 +117,9 @@ const entry = {
 
     if (entry.current.includes('.')) entry.isDecimalNumber = true
     else entry.isDecimalNumber = false
+  },
+  savePrevious() {
+    entry.previous = Number(entry.current)
+    entry.isOverwritingEnabled = true
   }
 }

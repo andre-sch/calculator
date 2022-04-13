@@ -81,7 +81,10 @@
       >
         <img src="./assets/unlicensed/square-root.svg" alt="square root">
       </button>
-      <button class="light-gray enabled">÷</button>
+      <button
+        class="light-gray enabled"
+        onclick="operation.doBasic('division')"
+      >÷</button>
       <!-- third row -->
       <button
         class="white number"
@@ -96,7 +99,9 @@
         onclick="entry.addCharacter('9')"
       >9</button>
       <button
-        class="light-gray enabled">×</button>
+        class="light-gray enabled"
+        onclick="operation.doBasic('multiplication')"
+      >×</button>
       <!-- fourth row -->
       <button
         class="white number"
@@ -110,7 +115,10 @@
         class="white number"
         onclick="entry.addCharacter('6')"
       >6</button>
-      <button class="light-gray enabled">–</button>
+      <button
+        class="light-gray enabled"
+        onclick="operation.doBasic('subtraction')"
+      >–</button>
       <!-- fifth row -->
       <button
         class="white number"
@@ -124,7 +132,10 @@
         class="white number"
         onclick="entry.addCharacter('3')"
       >3</button>
-      <button class="light-gray enabled">+</button>
+      <button
+        class="light-gray enabled"
+        onclick="operation.doBasic('addition')"
+      >+</button>
       <!-- sixth row -->
       <button
         class="white enabled"

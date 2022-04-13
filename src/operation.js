@@ -1,7 +1,26 @@
 const operationContainer = document.querySelector('.operation')
 
 const operation = {
+  last: '',
   matchContentAfterSign: /(?<=\s[-+×÷]).+/,
+  basic: {
+    addition: {
+      sign: '+',
+      execute: (a, b) => a + b
+    },
+    subtraction: {
+      sign: '-',
+      execute: (a, b) => a - b
+    },
+    multiplication: {
+      sign: '×',
+      execute: (a, b) => a * b
+    },
+    division: {
+      sign: '÷',
+      execute: (a, b) => a / b
+    }
+  },
   mathFunctions: {
     multiplicativeInverse() {
       if (Number(entry.current) == 0) {
@@ -64,6 +83,48 @@ const operation = {
       }
     }
   },
+  doBasic(name) {
+    const sign = operation.basic[name].sign
+    if (entry.previous == null) {
+      operation.end(Number(entry.current))
+      if (
+        operationContainer.textContent &&
+        !operationContainer.textContent.includes('=') &&
+        entry.isOverwritingEnabled
+      ) {
+        operationContainer.textContent += ` ${sign}`
+      }
+      else operationContainer.textContent = `${entry.current} ${sign}`
+    }
+    else {
+      const hasContentAfterSign = operation.matchContentAfterSign
+        .test(operationContainer.textContent)
+
+      if (!entry.isOverwritingEnabled || hasContentAfterSign) {
+        if (operation.checkDivisionByZero()) return
+
+        const result = operation.basic[operation.last]
+          .execute(entry.previous, Number(entry.current))
+        
+        operation.end(result)
+        operationContainer.textContent = `${Number(entry.current)} ${sign}`
+      } else if (operation.basic[operation.last].sign != sign) {
+        operationContainer.textContent = operationContainer.textContent
+          .replace(operation.basic[operation.last].sign, sign)
+      }
+    }
+    entry.savePrevious()
+    operation.last = name
+  },
+  checkDivisionByZero() {
+    if (operation.last == 'division' && Number(entry.current) == 0) {
+      operationContainer.textContent = `${entry.previous} ÷ 0`
+
+      if (entry.previous == '0') errorMode.display('Result is undefined')
+      else errorMode.display('Cannot divide by zero')
+
+      return true
+    }
   },
   end(result) {
     entry.current = operation.formatResult(result)
