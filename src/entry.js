@@ -15,8 +15,8 @@ const entry = {
   },
   addCharacter(character) {
     const MAX_LENGTH = 16
-    const cleanedCurrentEntry = entry.current.replace(/[-\.]|(?<=\b)0/g, '')
-  
+    const cleanedCurrentEntry = entry.current.replace(/[-\.]|(?<=\b)0\.|e.+/g, '')
+
     if (cleanedCurrentEntry.length == MAX_LENGTH) return
     if (character == '.') {
       if (entry.isDecimalNumber) return 
