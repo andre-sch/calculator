@@ -1,41 +1,48 @@
 .calculator-container {
   width: 356px;
-  padding: 8px 5px 5px;
   background: var(--background);
   border-radius: 8px;
 }
 
 .calculator-container > p {
-  margin-left: 10px;
+  margin: 8px 15px;
   font-weight: 400;
   font-size: .75rem;
   color: #7B6A6A;
 }
 
-header {
+header, header div, header button {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin: 10px;
-}
-header div {
-  display: flex;
-}
-header button {
-  height: 25px;
-  transition: filter .1s;
-}
-header button:hover {
-  filter: opacity(.8);
 }
 
-header .menu {
-  margin-right: 15px;
+header {
+  justify-content: space-between;
 }
+
+header button {
+  justify-content: center;
+  transition: background-color 0s, box-shadow 0s;
+}
+header button:hover {
+  background-color: rgba(0, 0, 0, .05);
+  box-shadow: inset 0 0 1px 1px rgba(0, 0, 0, .1);
+}
+ 
+header .menu {
+  width: 45px;
+  height: 45px;
+}
+header .history {
+  width: 40px;
+  height: 40px;
+}
+
 header h1 {
   font-size: 1.125rem;
   font-weight: 600;
   color: var(--black);
+  margin-left: 7px;
 }
 
 .equation {
@@ -84,6 +91,7 @@ header h1 {
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: 55px;
   gap: 2px;
+  padding: 0 5px 5px;
 }
 
 .keyboard button {
