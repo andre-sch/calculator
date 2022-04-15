@@ -1,0 +1,38 @@
+<!--
+
+MIT License
+
+Copyright (c) Icons8
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+-->
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="20"
+  height="20"
+  viewBox="0 0 20 20"
+  fill="none"
+>
+  <path
+    d="M12.9223 2L2 12.9216L7.07839 18L18.0006 7.07904L12.9223 2ZM12.9223 3.83403L16.1673 7.07775L7.07839 16.1673L3.83403 12.9223L4.5795 12.1768L5.96985 13.5671L6.89718 12.6604L5.4862 11.2494L6.25231 10.504L6.81593 11.0682L7.72327 10.1416L7.159 9.59728L7.92447 8.83116L9.31482 10.2222L10.2222 9.31482L8.83116 7.92447L9.59727 7.159L10.1415 7.72327L11.0682 6.81657L10.504 6.25166L11.2501 5.4862L12.6604 6.89718L13.5671 5.96985L12.1768 4.5795L12.9223 3.83403Z"
+    fill="#AAA2A1"
+  />
+</svg>

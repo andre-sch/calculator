@@ -1,0 +1,32 @@
+<!--
+
+Copyright 2015 IBM Corp.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  aria-hidden="true"
+  role="img"
+  width="20"
+  height="20"
+  preserveAspectRatio="xMidYMid meet"
+  viewBox="0 0 32 32"
+>
+  <path
+    d="m31 16l-7 7l-1.41-1.41L28.17 16l-5.58-5.59L24 9l7 7zM1 16l7-7l1.41 1.41L3.83 16l5.58 5.59L8 23l-7-7zm11.42 9.484L17.64 6l1.932.517L14.352 26z"
+    fill="#AAA2A1"
+  />
+</svg>

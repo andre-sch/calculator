@@ -1,0 +1,31 @@
+<!--
+
+Copyright 2015 IBM Corp.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS"
+BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="20"
+  height="20"
+  viewBox="0 0 20 20"
+  fill="none"
+>
+  <path
+    d="M16.7329 5.80595L10.2714 2.07269C10.189 2.02509 10.0954 2 10 2C9.90464 2 9.81098 2.02509 9.72862 2.07269L3.26708 5.80595C3.18578 5.85294 3.11834 5.92021 3.07148 6.00106C3.02462 6.08191 2.99997 6.17351 3 6.26674V13.7333C2.99997 13.8265 3.02462 13.9181 3.07148 13.9989C3.11834 14.0798 3.18578 14.1471 3.26708 14.1941L9.72862 17.9273C9.81098 17.9749 9.90464 18 10 18C10.0954 18 10.189 17.9749 10.2714 17.9273L16.7329 14.1941C16.8142 14.1471 16.8817 14.0798 16.9285 13.9989C16.9754 13.9181 17 13.8265 17 13.7333V6.26674C17 6.17351 16.9754 6.08191 16.9285 6.00106C16.8817 5.92021 16.8142 5.85294 16.7329 5.80595ZM10 3.15107L15.3932 6.26674L10 9.38241L4.60677 6.26674L10 3.15107ZM4.07692 7.19472L9.46154 10.3056V16.5385L4.07692 13.4271V7.19472ZM10.5385 16.5385V10.3061L15.9231 7.19526V13.4271L10.5385 16.5385Z"
+    fill="#AAA2A1"
+  />
+</svg>
