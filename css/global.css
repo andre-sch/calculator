@@ -10,6 +10,10 @@
   user-select: none;
 }
 
+ul {
+  list-style: none;
+}
+
 :root {
   --white: #FAFAFA;
   --light-gray: #DBD9D9;
@@ -30,7 +34,7 @@
   color: var(--white);
 }
 
-body, button, span {
+body, button, h1, span {
   font-family: 'Open Sans', sans-serif;
 }
 

@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./css/global.css">
   <link rel="stylesheet" href="./css/calculator.css">
+  <link rel="stylesheet" href="./css/menu-card.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
@@ -13,15 +14,82 @@
   <title>Calculator</title>
 </head>
 <body>
+  <div class="body-overlay"></div>
   <div class="calculator-container">
+    <div class="menu-card">
+      <section>
+        <h1>Calculator</h1>
+        <ul>
+          <li>
+            <button class="current-mode" onclick="toggleDisplay.menu()">
+              <img src="./assets/calculator.svg" alt="calculator">
+              Standard
+            </button>
+          </li>
+          <li>
+            <button class="unavailable">
+              <img src="./assets/test-tube.svg" alt="test tube">
+              Scientific
+            </button>
+          </li>
+          <li>
+            <button class="unavailable">
+              <img src="./assets/unlicensed/graph.svg" alt="cartesian plane">
+              Graphing
+            </button>
+          </li>
+          <li>
+            <button class="unavailable">
+              <img src="./assets/tag.svg" alt="HTML tag">
+              Programmer
+            </button>
+          </li>
+          <li>
+            <button class="unavailable">
+              <img src="./assets/calendar.svg" alt="calendar">
+              Date Calculation
+            </button>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h1 class="unavailable">Converter</h1>
+        <ul>
+          <li>
+            <button class="unavailable">
+              <img src="./assets/unlicensed/coin-stack.svg" alt="coin stack">
+              Currency
+            </button>
+          </li>
+          <li>
+            <button class="unavailable">
+              <img src="./assets/cube.svg" alt="cube">
+              Volume
+            </button>
+          </li>
+          <li>
+            <button class="unavailable">
+              <img src="./assets/ruler.svg" alt="ruler">
+              Length
+            </button>
+          </li>
+          <li>
+            <button class="unavailable">
+              <img src="./assets/ellipsis.svg" alt="ellipsis">
+            </button>
+          </li>
+        </ul>
+      </section>
+    </div>
     <p>Calculator</p>
     <header>
-      <div>
-        <button class="menu">
-          <img src="./assets/menu.svg" alt="menu bars">
-        </button>
-        <h1>Standard</h1>
-      </div>
+      <button
+        class="menu"
+        onclick="toggleDisplay.menu()"
+      >
+        <img src="./assets/menu.svg" alt="menu bars">
+      </button>
+      <h1>Standard</h1>
       <button class="history">
         <img src="./assets/history.svg" alt="history">
       </button>
@@ -165,7 +233,14 @@
   <script src="./src/entry.js"></script>
   <script src="./src/errorMode.js"></script>
   <script src="./src/operation.js"></script>
+  <script src="./src/toggleDisplay.js"></script>
   <script>
+    const bodyOverlay = document.querySelector('.body-overlay')
+
+    const cards = {
+      menu: document.querySelector('.menu-card'),
+    }
+
     function clearEverything() {
       operation.clear()
       entry.previous = null
