@@ -115,6 +115,13 @@ header h1 {
   color: var(--memory-disabled);
 }
 
+.memory-row button:disabled .enabled-img {
+  display: none;
+}
+.memory-row button:enabled .disabled-img {
+  display: none;
+}
+
 .keyboard {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
