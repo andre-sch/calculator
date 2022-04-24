@@ -34,7 +34,7 @@ ul {
   color: var(--white);
 }
 
-body, button, h1, span {
+body, button, pre {
   font-family: 'Open Sans', sans-serif;
 }
 output {
