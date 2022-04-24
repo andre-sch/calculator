@@ -1,6 +1,14 @@
 const toggleDisplay = {
   isExpanded: {
     menu: false,
+  calculatorOverlay(entity) {
+    if (this.isExpanded[entity]) {
+      calculatorOverlay.style.display = 'none'
+      calculatorOverlay.removeEventListener('click', this[entity])
+    } else {
+      calculatorOverlay.style.display = 'block'
+      calculatorOverlay.addEventListener('click', this[entity])
+    }
   },
   menu: () => {
     toggleDisplay.card('menu')

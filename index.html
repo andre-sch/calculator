@@ -17,6 +17,7 @@
 <body>
   <div class="body-overlay"></div>
   <div class="calculator-container">
+    <div class="calculator-overlay"></div>
     <div class="menu-card">
       <section>
         <h1>Calculator</h1>
@@ -265,6 +266,7 @@
   <script src="./src/toggleDisplay.js"></script>
   <script>
     const bodyOverlay = document.querySelector('.body-overlay')
+    const calculatorOverlay = document.querySelector('.calculator-overlay')
 
     const cards = {
       menu: document.querySelector('.menu-card'),
