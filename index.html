@@ -92,6 +92,7 @@
         </div>
         <button
           class="clear-saves"
+          onclick="calculatorHistory.clear()"
         >
           <img src="./assets/trash.svg" alt="clear history">
         </button>
@@ -120,7 +121,10 @@
         <img src="./assets/menu.svg" alt="menu bars">
       </button>
       <h1>Standard</h1>
-      <button class="history">
+      <button
+        class="history"
+        onclick="toggleDisplay.history()"
+      >
         <img src="./assets/history.svg" alt="history">
       </button>
     </header>
@@ -262,6 +266,7 @@
   </div>
   <script src="./src/entry.js"></script>
   <script src="./src/errorMode.js"></script>
+  <script src="./src/history.js"></script>
   <script src="./src/operation.js"></script>
   <script src="./src/toggleDisplay.js"></script>
   <script>
@@ -270,6 +275,7 @@
 
     const cards = {
       menu: document.querySelector('.menu-card'),
+      history: document.querySelector('.bottom-card.history'),
     }
 
     function clearEverything() {

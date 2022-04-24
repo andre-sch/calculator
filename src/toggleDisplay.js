@@ -1,6 +1,7 @@
 const toggleDisplay = {
   isExpanded: {
     menu: false,
+    history: false,
   calculatorOverlay(entity) {
     if (this.isExpanded[entity]) {
       calculatorOverlay.style.display = 'none'
@@ -12,6 +13,10 @@ const toggleDisplay = {
   },
   menu: () => {
     toggleDisplay.card('menu')
+  },
+  history: () => {
+    toggleDisplay.calculatorOverlay('history')
+    toggleDisplay.card('history')
   },
   card(entity) {
     const card = cards[entity]

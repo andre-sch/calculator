@@ -128,7 +128,11 @@ const operation = {
         const result = operation.basic[operation.last]
           .execute(entry.previous, Number(entry.current))
         
+        calculatorHistory.operationSecondTerm = entry.current
         operation.end(result)
+
+        calculatorHistory.addNewSave()
+
         operationContainer.textContent = `${Number(entry.current)} ${sign}`
       } else if (operation.basic[operation.last].sign != sign) {
         operationContainer.textContent = operationContainer.textContent
@@ -154,6 +158,7 @@ const operation = {
       
       if (operation.checkDivisionByZero()) return
 
+      calculatorHistory.operationSecondTerm = entry.current
       const result = operation.basic[operation.last]
         .execute(entry.previous, Number(entry.current))
       operation.end(result)
@@ -161,6 +166,7 @@ const operation = {
       entry.previous = null
       operation.last = ''
     }
+    calculatorHistory.addNewSave()
     entry.isOverwritingEnabled = true
   },
   checkDivisionByZero() {

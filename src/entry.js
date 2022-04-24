@@ -22,19 +22,27 @@ const entry = {
     
     if (entry.isOverwritingEnabled) {
       entry.isOverwritingEnabled = false
-
-      if (character == '.') entry.current = '0.'
-      else entry.current = character
-      entry.setNewAttributes()
       
       if (entry.previous != null) {
         const withoutContentAfterSign = operationContainer.textContent
           .replace(operation.matchContentAfterSign, '')
 
         operationContainer.textContent = withoutContentAfterSign
-      } else if (operationContainer.textContent.includes('=')) {
-        operationContainer.textContent = ''
       }
+      else {
+        if (operationContainer.textContent.includes('=')) {
+          operationContainer.textContent = ''
+        }
+        
+        const hasMathFunction = /\(.*?\)/.test(operationContainer.textContent)
+        if (hasMathFunction) {
+          calculatorHistory.addNewSave()
+        }
+      }
+
+      if (character == '.') entry.current = '0.'
+      else entry.current = character
+      entry.setNewAttributes()
     }
     else {
       if (character == '.') {
