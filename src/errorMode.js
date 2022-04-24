@@ -15,6 +15,9 @@ const errorMode = {
     for (const button of enabledButtons) {
       button.addEventListener('click', eventCallback)
     }
+
+    memory.enableRowActions('none')
+
     output.style.fontSize = '1.75rem'
   },
   hide(event) {
@@ -31,6 +34,12 @@ const errorMode = {
       element.removeAttribute('disabled')
     }
     
+    if (memory.list.length == 0) {
+      memory.enableRowActions('default')
+    } else {
+      memory.enableRowActions('all')
+    }
+
     output.style.fontSize = '2.25rem'
     clearEverything()
     if (event.target.className.includes('number')) {

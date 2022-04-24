@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="./css/calculator.css">
   <link rel="stylesheet" href="./css/bottom-card.css">
   <link rel="stylesheet" href="./css/history.css">
+  <link rel="stylesheet" href="./css/memory.css">
   <link rel="stylesheet" href="./css/menu-card.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -108,6 +109,7 @@
         </div>
         <button
           class="clear-saves"
+          onclick="memory.clear()"
         >
           <img src="./assets/trash.svg" alt="clear memory">
         </button>
@@ -134,12 +136,16 @@
       <output>0</output>
     </div>
     <div class="memory-row">
-      <button class="disabled" disabled>MC</button>
-      <button class="disabled" disabled>MR</button>
-      <button class="enabled">M+</button>
-      <button class="enabled">M-</button>
-      <button class="enabled">MS</button>
-      <button class="disabled" disabled>
+      <button onclick="memory.clear()" disabled>MC</button>
+      <button onclick="memory.recall()" disabled>MR</button>
+      <button onclick="memory.plus()">M+</button>
+      <button onclick="memory.minus()">M-</button>
+      <button onclick="memory.store()">MS</button>
+      <button
+        class="show-memory"
+        onclick="toggleDisplay.memory(event, true)"
+        disabled
+      >
         <img
           class="disabled-img"
           src="./assets/unlicensed/show-memory-disabled.svg"
@@ -277,6 +283,7 @@
   <script src="./src/entry.js"></script>
   <script src="./src/errorMode.js"></script>
   <script src="./src/history.js"></script>
+  <script src="./src/memory.js"></script>
   <script src="./src/operation.js"></script>
   <script src="./src/toggleDisplay.js"></script>
   <script>
@@ -286,6 +293,7 @@
     const cards = {
       menu: document.querySelector('.menu-card'),
       history: document.querySelector('.bottom-card.history'),
+      memory: document.querySelector('.bottom-card.memory')
     }
 
     function clearEverything() {

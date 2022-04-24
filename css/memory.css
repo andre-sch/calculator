@@ -1,0 +1,35 @@
+.memory .saves-container ul li {
+  padding: 6px 15px 4px;
+}
+
+.memory .saves-container li + li {
+  margin-top: 15px;
+}
+
+.memory .saves-container li output {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--black);
+}
+
+.memory .saves-container li .memory-actions {
+  display: none;
+  width: 112px;
+  height: 28px;
+}
+.memory .saves-container li:hover .memory-actions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+}
+
+.memory-actions button {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--keyboard-text);
+  background-color: #ffffff;
+}
+.memory-actions button:hover {
+  color: #ffffff;
+  background-color: var(--keyboard-text);
+}

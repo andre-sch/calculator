@@ -2,6 +2,8 @@ const toggleDisplay = {
   isExpanded: {
     menu: false,
     history: false,
+    memory: false
+  },
   calculatorOverlay(entity) {
     if (this.isExpanded[entity]) {
       calculatorOverlay.style.display = 'none'
@@ -17,6 +19,19 @@ const toggleDisplay = {
   history: () => {
     toggleDisplay.calculatorOverlay('history')
     toggleDisplay.card('history')
+  },
+  memory: (event, openingCard = false) => {
+    toggleDisplay.calculatorOverlay('memory')
+    toggleDisplay.card('memory')
+
+    if (openingCard) {
+      memory.enableRowActions('justShowMemory')
+    }
+    else if (memory.list.length == 0) {
+      memory.enableRowActions('default')
+    } else {
+      memory.enableRowActions('all')
+    }
   },
   card(entity) {
     const card = cards[entity]
