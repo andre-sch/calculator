@@ -37,6 +37,9 @@ ul {
 body, button, h1, span {
   font-family: 'Open Sans', sans-serif;
 }
+output {
+  font-family: 'Poppins', sans-serif;
+}
 
 body {
   display: flex;

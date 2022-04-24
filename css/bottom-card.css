@@ -1,0 +1,81 @@
+.bottom-card {
+  position: absolute;
+  top: calc(100% + 345px);
+  left: 0;
+  width: 100%;
+  height: 345px;
+  background-color: #d7d7d7;
+  border-radius: 0 0 8px 8px;
+  z-index: 5;
+  animation: open-bottom-card .25s ease forwards paused;
+}
+.bottom-card.expanded {
+  animation: close-bottom-card .25s ease forwards paused;
+}
+
+.bottom-card.empty .content {
+  display: none;
+}
+.bottom-card:not(.empty) p {
+  display: none;
+}
+
+.bottom-card p {
+  margin: 18px;
+  font-size: 14px;
+  color: #000000
+}
+
+.bottom-card .saves-container {
+  height: 290px;
+  width: 100%;
+  overflow-y: auto;
+}
+
+.saves-container ul {
+  padding: 20px 0;
+}
+
+.saves-container ul li {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  height: 70px;
+  width: 100%;
+  text-align: end;
+  cursor: pointer;
+  transition: background-color .2s;
+}
+.saves-container ul li:hover {
+  background-color: #c3c3c3;
+}
+
+.bottom-card .clear-saves {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 0 0 8px 0;
+}
+
+@keyframes open-bottom-card {
+  from {
+    top: calc(100% + 345px);
+  }
+  to {
+    top: calc(100% - 345px);
+  }
+}
+
+@keyframes close-bottom-card {
+  from {
+    top: calc(100% - 345px);
+  }
+  to {
+    top: calc(100% + 345px);
+  }
+}
