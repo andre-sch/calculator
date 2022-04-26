@@ -61,7 +61,11 @@ const operation = {
     },
     display(mathFunction) {
       if (entry.previous == null) {
-        if (entry.isOverwritingEnabled && !operationContainer.textContent.includes('=')) {
+        if (
+          entry.isOverwritingEnabled &&
+          !operationContainer.textContent.includes('=') &&
+          !memory.hasBeenRecovered
+        ) {
           operationContainer.textContent = `${mathFunction}( ${operationContainer.textContent} )`
         } else {
           operationContainer.textContent = `${mathFunction}( ${Number(entry.current)} )`
@@ -122,7 +126,12 @@ const operation = {
       const hasContentAfterSign = operation.matchContentAfterSign
         .test(operationContainer.textContent)
 
-      if (!entry.isOverwritingEnabled || hasContentAfterSign) {
+
+      if (
+        !entry.isOverwritingEnabled ||
+        hasContentAfterSign ||
+        memory.hasBeenRecovered
+      ) {
         if (operation.checkDivisionByZero()) return
 
         const result = operation.basic[operation.last]
@@ -183,6 +192,8 @@ const operation = {
     entry.current = operation.formatResult(result)
     entry.setNewAttributes()
     entry.showCurrent()
+
+    memory.hasBeenRecovered = false
   },
   formatResult(result) {
     const cleanedResult = result.toString().replace(/[-\.]|(?<=\b)0\./g, '')

@@ -1,5 +1,6 @@
 const memory = {
   list: [],
+  hasBeenRecovered: false,
   listContainer: document.querySelector('.bottom-card.memory ul'),
   populateCard() {
     cards.memory.classList.remove('empty')
@@ -62,8 +63,17 @@ const memory = {
   },
   recall() {
     entry.current = memory.list[0]
+    entry.setNewAttributes()
     entry.showCurrent()
     entry.isOverwritingEnabled = true
+    memory.hasBeenRecovered = true
+
+    if (entry.previous) {
+      operationContainer.textContent = operationContainer.textContent
+        .replace(operation.matchContentAfterSign, '')
+    } else if (operationContainer.textContent.includes('=')) {
+      operationContainer.textContent = ''
+    }
   },
   plus(index = 0) {
     const isFirstInput = memory.list.length == 0

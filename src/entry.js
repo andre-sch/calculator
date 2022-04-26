@@ -13,6 +13,8 @@ const entry = {
       ? entry.current.slice(1)
       : '-' + entry.current
     entry.showCurrent()
+
+    memory.hasBeenRecovered = false
   },
   addCharacter(character) {
     const MAX_LENGTH = 16
