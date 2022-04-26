@@ -59,7 +59,8 @@ const memory = {
   clear(index) {
     if (index != undefined && memory.list.length > 1) {
       memory.list.splice(index, 1)
-      memory.populateCard()
+      memory.deletingAnimation(index)
+      setTimeout(() => memory.populateCard(), 800)
     } else {
       cards.memory.classList.add('empty')
       memory.list = []
@@ -116,5 +117,13 @@ const memory = {
     memory.populateCard()
     memory.enableRowActions('all')
     entry.isOverwritingEnabled = true
+  },
+  deletingAnimation(index) {
+    const secondListItem = memory.listContainer.children[1]
+    secondListItem.style.animation = 'removing-margin .6s forwards'
+    
+    const elementToDelete = memory.listContainer.children[index]
+    elementToDelete.innerHTML = ''
+    elementToDelete.style.animation = 'deleting-element .6s forwards'
   }
 }

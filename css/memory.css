@@ -59,3 +59,17 @@
   opacity: 1;
   transition: opacity .1s linear 1.2s;
 }
+
+@keyframes deleting-element {
+  to {
+    margin: 0;
+    height: 0;
+    padding: 0;
+  }
+}
+
+@keyframes removing-margin {
+  to {
+    margin: 0;
+  }
+}
