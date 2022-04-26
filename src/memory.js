@@ -16,13 +16,23 @@ const memory = {
 
       const buttonsContent = ['MC', 'M+', 'M-']
       const actionFunctions = [this.clear, this.plus, this.minus]
+      const tooltipsContent = [
+        'Clear memory item',
+        'Add to memory item',
+        'Subtract from memory item'
+      ]
 
       actionFunctions.forEach((action, actionIndex) => {
         const actionButton = document.createElement('button')
         actionButton.textContent = buttonsContent[actionIndex]
         actionButton.onclick = () => action(listItemIndex)
-
+        
+        const tooltip = document.createElement('div')
+        tooltip.textContent = tooltipsContent[actionIndex]
+        tooltip.classList.add('tooltip', `action-${actionIndex}`)
+        
         actionsContainer.appendChild(actionButton)
+        actionsContainer.appendChild(tooltip)
       })
       
       listItem.appendChild(actionsContainer)
