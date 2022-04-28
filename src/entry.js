@@ -26,18 +26,14 @@ const entry = {
       entry.isOverwritingEnabled = false
       
       if (entry.previous != null) {
-        const withoutContentAfterSign = operationContainer.textContent
-          .replace(operation.matchContentAfterSign, '')
-
-        operationContainer.textContent = withoutContentAfterSign
+        operation.clearContentAfterSign()
       }
       else {
         if (operationContainer.textContent.includes('=')) {
           operationContainer.textContent = ''
         }
         
-        const hasMathFunction = /\(.*?\)/.test(operationContainer.textContent)
-        if (hasMathFunction) {
+        if (operation.hasMathFunction()) {
           calculatorHistory.addNewSave()
         }
       }
@@ -132,8 +128,7 @@ const entry = {
     entry.isOverwritingEnabled = false
 
     if (entry.previous) {
-      operationContainer.textContent = operationContainer.textContent
-        .replace(operation.matchContentAfterSign, '')
+      operation.clearContentAfterSign()
     } else if (operationContainer.textContent.includes('=')) {
       operationContainer.textContent = ''
     }

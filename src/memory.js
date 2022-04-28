@@ -80,8 +80,7 @@ const memory = {
     memory.hasBeenRecovered = true
 
     if (entry.previous) {
-      operationContainer.textContent = operationContainer.textContent
-        .replace(operation.matchContentAfterSign, '')
+      operation.clearContentAfterSign()
     } else if (operationContainer.textContent.includes('=')) {
       operationContainer.textContent = ''
     }

@@ -74,8 +74,7 @@ const operation = {
       else {
         const matchContent = operationContainer.textContent
           .match(operation.matchContentAfterSign)
-        const withoutContentAfterSign = operationContainer.textContent
-          .replace(operation.matchContentAfterSign, '')
+        operation.clearContentAfterSign()
 
         if (matchContent) {
           var newContentAfterSign = ` ${mathFunction}(${matchContent[0]} )`
@@ -83,9 +82,32 @@ const operation = {
         else {
           var newContentAfterSign = ` ${mathFunction}( ${Number(entry.current)} )`
         }
-        operationContainer.textContent = withoutContentAfterSign + newContentAfterSign
+        operationContainer.textContent += newContentAfterSign
       }
     }
+  },
+  getSign() {
+    const regex = /\s[-+×÷]($|\s)/
+
+    const sign = regex.test(operationContainer.textContent) ?
+      operationContainer.textContent.match(regex)[0].trim() : ''
+
+    return sign
+  },
+  getNameOfBasic(sign) {
+    for (const operationName in operation.basic) {
+      if (operation.basic[operationName].sign == sign) return operationName
+    }
+    return ''
+  },
+  hasMathFunction: () => /\(.*?\)/.test(operationContainer.textContent),
+  hasContentAfterSign() {
+    return operation.matchContentAfterSign.test(operationContainer.textContent)
+  },
+  clearContentAfterSign() {
+    operationContainer.textContent = operationContainer.textContent.replace(
+      operation.matchContentAfterSign, ''
+    )
   },
   percentage() {
     if (entry.previous == null) {
@@ -113,23 +135,15 @@ const operation = {
     const sign = operation.basic[name].sign
     if (entry.previous == null) {
       operation.end(Number(entry.current))
-      if (
-        operationContainer.textContent &&
-        !operationContainer.textContent.includes('=') &&
-        entry.isOverwritingEnabled
-      ) {
+      if (operation.hasMathFunction() && !operationContainer.textContent.includes('=')) {
         operationContainer.textContent += ` ${sign}`
       }
       else operationContainer.textContent = `${entry.current} ${sign}`
     }
     else {
-      const hasContentAfterSign = operation.matchContentAfterSign
-        .test(operationContainer.textContent)
-
-
       if (
         !entry.isOverwritingEnabled ||
-        hasContentAfterSign ||
+        operation.hasContentAfterSign() ||
         memory.hasBeenRecovered
       ) {
         if (operation.checkDivisionByZero()) return
