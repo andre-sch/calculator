@@ -4,30 +4,18 @@ const calculatorHistory = {
   listContainer: document.querySelector('.bottom-card.history ul'),
   addNewSave() {
     var formattedOperation = operationContainer.textContent
+    const sign = operation.getSign()
 
-    if (entry.previous == null) {
-      if (operationContainer.textContent.includes('=')) {
-        const hasBasicOperation = /[-+×÷]/.test(operationContainer.textContent)
-        if (hasBasicOperation) {
-          const sign = operation.basic[operation.last].sign
-          formattedOperation = operationContainer.textContent
-            .replace(` ${sign} `, `   ${sign}   `)
-        }
+    if (operation.hasContentAfterSign()) {
+      formattedOperation = operationContainer.textContent
+        .replace(` ${sign} `, `   ${sign}   `)
+      if (!operationContainer.textContent.includes('=')) {
+        formattedOperation += ' ='
       }
-    } else {
-      const hasContentAfterSign = operation.matchContentAfterSign
-        .test(operationContainer.textContent)
-
-      const sign = operation.basic[operation.last].sign
-      if (hasContentAfterSign) {
-        formattedOperation = operationContainer.textContent
-          .replace(` ${sign} `, `   ${sign}   `)
-          + ' ='
-      } else {
-        formattedOperation = operationContainer.textContent
-          .replace(` ${sign}`, `   ${sign}`)
-          + `   ${this.operationSecondTerm} =`
-      }
+    } else if (entry.previous != null) {
+      formattedOperation = operationContainer.textContent
+        .replace(` ${sign}`, `   ${sign}`)
+        + `   ${this.operationSecondTerm} =`
     }
 
     this.list.unshift({
