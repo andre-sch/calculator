@@ -180,15 +180,26 @@ const operation = {
   },
   equal() {
     if (entry.previous == null) {
-      if (!operationContainer.textContent || operationContainer.textContent.includes('=')) {
-        operationContainer.textContent = `${Number(entry.current)} =`
-      } else operationContainer.textContent += ' ='
+      if (operation.hasContentAfterSign()) {
+        const sign = operation.getSign()
+        const operationName = operation.getNameOfBasic(sign)
+
+        operationContainer.textContent =
+          `${entry.current} ${sign} ${calculatorHistory.operationSecondTerm} =`
+
+        const result = operation.basic[operationName].execute(
+          Number(entry.current),
+          Number(calculatorHistory.operationSecondTerm)
+        )
+        operation.end(result)
+      } else {
+        if (operation.hasMathFunction() && !operationContainer.textContent.includes('=')) {
+          operationContainer.textContent += ' ='
+        } else operationContainer.textContent = `${Number(entry.current)} =`
+      }
     }
     else {
-      const hasContentAfterSign = operation.matchContentAfterSign
-        .test(operationContainer.textContent)
-      
-      if (hasContentAfterSign) {
+      if (operation.hasContentAfterSign()) {
         operationContainer.textContent += ' ='
       } else operationContainer.textContent += ` ${Number(entry.current)} =`
       

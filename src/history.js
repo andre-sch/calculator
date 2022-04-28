@@ -32,6 +32,7 @@ const calculatorHistory = {
 
     this.list.unshift({
       operation: formattedOperation,
+      operationSecondTerm: this.operationSecondTerm,
       current: entry.current
     })
 
@@ -54,10 +55,15 @@ const calculatorHistory = {
     })
   },
   displaySave(index) {
-    const {operation: savedOperation, current: savedCurrent} = this.list[index]
+    const {
+      operation: savedOperation,
+      operationSecondTerm,
+      current: savedCurrent
+    } = this.list[index]
     
     operationContainer.textContent = savedOperation
     operation.last = ''
+    this.operationSecondTerm = operationSecondTerm
 
     entry.previous = null
     entry.current = savedCurrent
