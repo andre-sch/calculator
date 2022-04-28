@@ -110,25 +110,38 @@ const operation = {
     )
   },
   percentage() {
+    var operationName, relativeValue
+    const sign = operation.getSign()
+
     if (entry.previous == null) {
-      entry.clear()
-      operationContainer.textContent = '0'
+      if (sign) {
+        operationName = operation.getNameOfBasic(sign)
+        relativeValue = Number(entry.current)
+      } else {
+        entry.clear()
+        operationContainer.textContent = '0'
+        return
+      }
     }
     else {
-      const isPercentageRelativeToPreviousEntry =
-        ['addition', 'subtraction'].includes(operation.last)
-
-      const result =
-        (isPercentageRelativeToPreviousEntry ? entry.previous : 1) *
-        (Number(entry.current) / 100)
-
-      operation.end(result)
-      
-      const withoutContentAfterSign = operationContainer.textContent
-        .replace(operation.matchContentAfterSign, '')
-      operationContainer.textContent =
-        `${withoutContentAfterSign} ${Number(entry.current)}`
+      operationName = operation.last
+      relativeValue = entry.previous
+  
+      operation.clearContentAfterSign()
+      operationContainer.textContent += ' '
     }
+    const isPercentageRelativeToPreviousEntry =
+      ['addition', 'subtraction'].includes(operationName)
+
+    const result =
+      (isPercentageRelativeToPreviousEntry ? relativeValue : 1) *
+      (Number(entry.current) / 100)
+
+    if (operationContainer.textContent.includes('=')) {
+      operationContainer.textContent = result
+    } else operationContainer.textContent += result
+
+    operation.end(result)
     entry.isOverwritingEnabled = true
   },
   doBasic(name) {
