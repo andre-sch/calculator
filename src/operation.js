@@ -2,7 +2,7 @@ const operationContainer = document.querySelector('.operation')
 
 const operation = {
   last: '',
-  matchContentAfterSign: /(?<=\s[-+×÷]).+/,
+  matchContentAfterSign: /(?<=\s[-+×÷])(?=\s).+/,
   basic: {
     addition: {
       sign: '+',
