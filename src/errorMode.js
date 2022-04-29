@@ -1,4 +1,5 @@
-const eventCallback = event => errorMode.hide(event)
+const clickEventCallback = event => errorMode.hide(event)
+const keyPressEventCallback = event => keyboardActions.undoErrorMode(event)
 
 const errorMode = {
   display(message) {
@@ -11,9 +12,10 @@ const errorMode = {
       element.setAttribute('disabled', true)
     }
     
+    document.addEventListener('keydown', keyPressEventCallback)
     const enabledButtons = document.querySelectorAll('.keyboard button:enabled')
     for (const button of enabledButtons) {
-      button.addEventListener('click', eventCallback)
+      button.addEventListener('click', clickEventCallback)
     }
 
     memory.enableRowActions('none')
@@ -21,9 +23,10 @@ const errorMode = {
     output.style.fontSize = '1.75rem'
   },
   hide(event) {
+    document.removeEventListener('keydown', keyPressEventCallback)
     const enabledButtons = document.querySelectorAll('.keyboard button:enabled')
     for (const button of enabledButtons) {
-      button.removeEventListener('click', eventCallback)
+      button.removeEventListener('click', clickEventCallback)
     }
     
     const buttonsToEnable = document.getElementsByClassName('disabled')
@@ -42,8 +45,16 @@ const errorMode = {
 
     output.style.fontSize = '2.25rem'
     clearEverything()
-    if (event.target.className.includes('number')) {
-      event.target.onclick()
+
+    var targetButton
+    if (event.type == 'click') {
+      targetButton = event.target
+    } else if (event.type == 'keydown') {
+      const keyID = event.key == 'Enter' ? '=' : event.key
+      targetButton = document.getElementById(`key ${keyID}`)
+    }
+    if (targetButton.className.includes('number')) {
+      targetButton.onclick()
     }
   }
 }
