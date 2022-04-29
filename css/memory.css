@@ -30,7 +30,8 @@
   color: var(--keyboard-text);
   background-color: #ffffff;
 }
-.memory-actions button:hover {
+  .memory-actions button:hover,
+  .memory-actions button:focus {
   color: #ffffff;
   background-color: var(--keyboard-text);
 }

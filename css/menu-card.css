@@ -1,4 +1,5 @@
 .menu-card {
+  display: none;
   position: absolute;
   top: 32px;
   left: -500px;
@@ -32,14 +33,14 @@ section h1 {
 
 section .unavailable {
   color: #AAA2A1;
-  cursor: default;
 }
 
 section ul {
   margin: 10px 0;
 }
 
-section ul li button {
+section ul li button,
+section ul li .unavailable {
   position: relative;
   display: flex;
   align-items: center;
@@ -49,7 +50,7 @@ section ul li button {
   font-size: 13px;
   font-weight: 400;
 }
-section ul li button:not(.unavailable):hover {
+section ul li button:hover {
   background-color: #d1d1d1;
 }
 
@@ -62,7 +63,8 @@ section ul li button.current-mode::before {
   border: 1px solid var(--black);
 }
 
-section ul li button img {
+section ul li button img,
+section ul li .unavailable img {
   margin-right: 10px;
 }
 

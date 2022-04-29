@@ -1,4 +1,5 @@
 .bottom-card {
+  display: none;
   position: absolute;
   top: calc(100% + 345px);
   left: 0;
@@ -30,6 +31,7 @@
   height: 290px;
   width: 100%;
   overflow-y: auto;
+  scroll-behavior: smooth;
 }
 
 .saves-container ul {
@@ -46,7 +48,8 @@
   cursor: pointer;
   transition: background-color .2s;
 }
-.saves-container ul li:hover {
+.saves-container ul li:hover,
+.saves-container ul li:focus   {
   background-color: #c3c3c3;
 }
 

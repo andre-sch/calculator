@@ -32,6 +32,7 @@ const calculatorHistory = {
 
     this.list.forEach((save, index) => {
       const listItem = document.createElement('li')
+      listItem.tabIndex = 0
 
       listItem.innerHTML =
         `<pre>${save.operation}</pre>` +

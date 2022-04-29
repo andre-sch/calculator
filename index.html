@@ -31,28 +31,28 @@
             </button>
           </li>
           <li>
-            <button class="unavailable">
+            <div class="unavailable">
               <img src="./assets/test-tube.svg" alt="test tube">
               Scientific
-            </button>
+            </div>
           </li>
           <li>
-            <button class="unavailable">
+            <div class="unavailable">
               <img src="./assets/unlicensed/graph.svg" alt="cartesian plane">
               Graphing
-            </button>
+            </div>
           </li>
           <li>
-            <button class="unavailable">
+            <div class="unavailable">
               <img src="./assets/tag.svg" alt="HTML tag">
               Programmer
-            </button>
+            </div>
           </li>
           <li>
-            <button class="unavailable">
+            <div class="unavailable">
               <img src="./assets/calendar.svg" alt="calendar">
               Date Calculation
-            </button>
+            </div>
           </li>
         </ul>
       </section>
@@ -60,27 +60,27 @@
         <h1 class="unavailable">Converter</h1>
         <ul>
           <li>
-            <button class="unavailable">
+            <div class="unavailable">
               <img src="./assets/unlicensed/coin-stack.svg" alt="coin stack">
               Currency
-            </button>
+            </div>
           </li>
           <li>
-            <button class="unavailable">
+            <div class="unavailable">
               <img src="./assets/cube.svg" alt="cube">
               Volume
-            </button>
+            </div>
           </li>
           <li>
-            <button class="unavailable">
+            <div class="unavailable">
               <img src="./assets/ruler.svg" alt="ruler">
               Length
-            </button>
+            </div>
           </li>
           <li>
-            <button class="unavailable">
+            <div class="unavailable">
               <img src="./assets/ellipsis.svg" alt="ellipsis">
-            </button>
+            </div>
           </li>
         </ul>
       </section>
@@ -161,12 +161,14 @@
     <div class="keyboard">
       <!-- first row -->
       <button
+        id="key %"
         class="light-gray enabled"
         onclick="operation.percentage()"
       >
         <img src="./assets/percentage.svg" alt="percentage">
       </button>
       <button
+        id="key Delete"
         class="light-gray clear"
         onclick="entry.clear()"
       >CE</button>
@@ -175,6 +177,7 @@
         onclick="clearEverything()"
       >C</button>
       <button
+        id="key Backspace"
         class="light-gray"
         onclick="entry.removeCharacter()"
       >
@@ -182,6 +185,7 @@
       </button>
       <!-- second row -->
       <button
+        id="key r"
         class="light-gray enabled"
         onclick="operation.mathFunctions.multiplicativeInverse()"
       >
@@ -191,69 +195,84 @@
         >
       </button>
       <button
+        id="key q"
         class="light-gray enabled"
         onclick="operation.mathFunctions.square()"
       >
         <img src="./assets/unlicensed/number-squared.svg" alt="number squared">
       </button>
       <button
+        id="key @"
         class="light-gray enabled"
         onclick="operation.mathFunctions.squareRoot()"
       >
         <img src="./assets/unlicensed/square-root.svg" alt="square root">
       </button>
       <button
+        id="key /"
         class="light-gray enabled"
         onclick="operation.doBasic('division')"
       >÷</button>
       <!-- third row -->
       <button
+        id="key 7"
         class="white number"
         onclick="entry.addCharacter('7')"
       >7</button>
       <button
+        id="key 8"
         class="white number"
         onclick="entry.addCharacter('8')"
       >8</button>
       <button
+        id="key 9"
         class="white number"
         onclick="entry.addCharacter('9')"
       >9</button>
       <button
+        id="key *"
         class="light-gray enabled"
         onclick="operation.doBasic('multiplication')"
       >×</button>
       <!-- fourth row -->
       <button
+        id="key 4"
         class="white number"
         onclick="entry.addCharacter('4')"
       >4</button>
       <button
+        id="key 5"
         class="white number"
         onclick="entry.addCharacter('5')"
       >5</button>
       <button
+        id="key 6"
         class="white number"
         onclick="entry.addCharacter('6')"
       >6</button>
       <button
+        id="key -"
         class="light-gray enabled"
         onclick="operation.doBasic('subtraction')"
       >–</button>
       <!-- fifth row -->
       <button
+        id="key 1"
         class="white number"
         onclick="entry.addCharacter('1')"
       >1</button>
       <button
+        id="key 2"
         class="white number"
         onclick="entry.addCharacter('2')"
       >2</button>
       <button
+        id="key 3"
         class="white number"
         onclick="entry.addCharacter('3')"
       >3</button>
       <button
+        id="key +"
         class="light-gray enabled"
         onclick="operation.doBasic('addition')"
       >+</button>
@@ -266,14 +285,17 @@
         <img src="./assets/plus-minus.svg" alt="plus minus">
       </button>
       <button
+        id="key 0"
         class="white number"
         onclick="entry.addCharacter('0')"
       >0</button>
       <button
+        id="key ."
         class="white enabled"
         onclick="entry.addCharacter('.')"
       >.</button>
-      <button 
+      <button
+        id="key ="
         class="dark-gray"
         style="border-radius: 0 0 5px 0;"
         onclick="operation.equal()"
@@ -283,6 +305,7 @@
   <script src="./src/entry.js"></script>
   <script src="./src/errorMode.js"></script>
   <script src="./src/history.js"></script>
+  <script src="./src/keyboardActions.js"></script>
   <script src="./src/memory.js"></script>
   <script src="./src/operation.js"></script>
   <script src="./src/scrollbar.js"></script>
@@ -290,6 +313,7 @@
   <script>
     const bodyOverlay = document.querySelector('.body-overlay')
     const calculatorOverlay = document.querySelector('.calculator-overlay')
+    const tabNavigationButtons = document.querySelectorAll('header button, .memory-row button')
 
     const cards = {
       menu: document.querySelector('.menu-card'),

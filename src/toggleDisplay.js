@@ -37,17 +37,26 @@ const toggleDisplay = {
     const card = cards[entity]
     card.style.animationPlayState = 'running'
 
+    if (!this.isExpanded[entity]) {
+      card.style.display = 'block'
+      tabNavigationButtons.forEach(button => button.tabIndex = -1)
+    }
+
     setTimeout(() => {
       card.style.animationPlayState = 'paused'
       if (this.isExpanded[entity]) {
         card.classList.remove('expanded')
+        card.style.display = 'none'
+        tabNavigationButtons.forEach(button => button.tabIndex = 0)
 
         bodyOverlay.style.display = 'none'
+        bodyOverlay.classList.remove(entity)
         bodyOverlay.removeEventListener('click', this[entity])
       } else {
         card.classList.add('expanded')
         
         bodyOverlay.style.display = 'block'
+        bodyOverlay.classList.add(entity)
         bodyOverlay.addEventListener('click', this[entity])
       }
       this.isExpanded[entity] = !this.isExpanded[entity]
