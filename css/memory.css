@@ -22,6 +22,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2px;
+  z-index: 1;
 }
 
 .memory-actions button {
@@ -37,6 +38,7 @@
 }
 
 .memory-actions .tooltip {
+  display: none;
   opacity: 0;
   position: absolute;
   bottom: calc(100% + 16px);

@@ -1,5 +1,11 @@
 const memory = {
   list: [],
+  buttonsContent: ['MC', 'M+', 'M-'],
+  tooltipsContent: [
+    'Clear memory item',
+    'Add to memory item',
+    'Subtract from memory item'
+  ],
   hasBeenRecovered: false,
   listContainer: document.querySelector('.bottom-card.memory ul'),
   populateCard() {
@@ -8,27 +14,34 @@ const memory = {
 
     memory.list.forEach((save, listItemIndex) => {
       const listItem = document.createElement('li')
+      listItem.tabIndex = 0
+
+      listItem.onclick = event => memory.listItemRecall(event, listItemIndex)
+      listItem.onkeydown = event => {
+        if (event.key == 'Enter') memory.listItemRecall(event,listItemIndex)
+      }
 
       listItem.innerHTML = `<output>${save}</output>`
 
       const actionsContainer = document.createElement('div')
       actionsContainer.className = 'memory-actions'
 
-      const buttonsContent = ['MC', 'M+', 'M-']
       const actionFunctions = [this.clear, this.plus, this.minus]
-      const tooltipsContent = [
-        'Clear memory item',
-        'Add to memory item',
-        'Subtract from memory item'
-      ]
-
       actionFunctions.forEach((action, actionIndex) => {
         const actionButton = document.createElement('button')
-        actionButton.textContent = buttonsContent[actionIndex]
+        actionButton.textContent = memory.buttonsContent[actionIndex]
         actionButton.onclick = () => action(listItemIndex)
+
+        var displayTooltipTimeout
+        actionButton.onmouseenter = () => displayTooltipTimeout =
+          setTimeout(() => actionButton.nextSibling.style.display = 'block', 1200)
+        actionButton.onmouseleave = () => {
+          clearTimeout(displayTooltipTimeout)
+          actionButton.nextSibling.style.display = 'none'
+        }
         
         const tooltip = document.createElement('div')
-        tooltip.textContent = tooltipsContent[actionIndex]
+        tooltip.textContent = memory.tooltipsContent[actionIndex]
         tooltip.classList.add('tooltip', `action-${actionIndex}`)
         
         actionsContainer.appendChild(actionButton)
@@ -72,8 +85,8 @@ const memory = {
       }
     }
   },
-  recall() {
-    entry.current = memory.list[0]
+  recall(index = 0) {
+    entry.current = memory.list[index]
     entry.setNewAttributes()
     entry.showCurrent()
     entry.isOverwritingEnabled = true
@@ -83,6 +96,12 @@ const memory = {
       operation.clearContentAfterSign()
     } else if (operationContainer.textContent.includes('=')) {
       operationContainer.textContent = ''
+    }
+  },
+  listItemRecall(event, index) {
+    if (event.target.parentNode.className != 'memory-actions') {
+      memory.recall(index)
+      toggleDisplay.memory()
     }
   },
   plus(index = 0) {

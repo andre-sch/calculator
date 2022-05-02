@@ -36,7 +36,7 @@ const keyboardActions = {
   functionType: null,
   keyIndex: null,
   execute(event) {
-    if (event.target.tagName == 'BUTTON' && event.key == 'Enter') return
+    if (event.target.onclick && event.key == 'Enter') return
 
     for (const type in this.functionTypes) {
       this.functionTypes[type].keys.forEach((key, index) => {
