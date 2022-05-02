@@ -13,7 +13,7 @@ const keyboardActions = {
       execute: () => entry.clear()
     },
     mathFunctions: {
-      keys: ['r', 'q', '@'],
+      keys: ['r', 'q', '@', 'F9'],
       execute: mathFunction => operation.mathFunctions[mathFunction]()
     },
     percentage: {
@@ -30,7 +30,7 @@ const keyboardActions = {
     },
     closeCard: {
       keys: ['Escape'],
-      execute: entity => entity ? toggleDisplay[entity]() : null
+      execute: entity => entity ? toggleDisplay[entity]() : clearEverything()
     }
   },
   functionType: null,
@@ -48,7 +48,7 @@ const keyboardActions = {
     }
     if (this.functionType == null) return
 
-    if (event.key != 'Escape') {
+    if (event.key != 'Escape' || !bodyOverlay.classList[1]) {
       const keyID = event.key == 'Enter' ? '=' : event.key
       const targetKeyButton = document.getElementById(`key ${keyID}`)
     
@@ -68,7 +68,7 @@ const keyboardActions = {
       case 'doBasic':
         return ['addition', 'subtraction', 'multiplication', 'division'][this.keyIndex]
       case 'mathFunctions':
-        return ['multiplicativeInverse', 'square', 'squareRoot'][this.keyIndex]
+        return ['multiplicativeInverse', 'square', 'squareRoot', 'negate'][this.keyIndex]
       case 'closeCard':
         return bodyOverlay.classList[1]
       default:
@@ -77,6 +77,7 @@ const keyboardActions = {
   },
   undoErrorMode(event) {
     const allowedKeys = [
+      'Escape',
       'Delete',
       'Backspace',
       '0', '1', '2', '3', '4',
