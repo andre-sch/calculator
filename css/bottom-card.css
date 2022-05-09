@@ -30,7 +30,7 @@
 .bottom-card .saves-container {
   height: 290px;
   width: 100%;
-  overflow-y: auto;
+  overflow-y: overlay;
   scroll-behavior: smooth;
 }
 
