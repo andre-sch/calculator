@@ -39,17 +39,24 @@
 }
 
 .saves-container ul li {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  height: 70px;
+  position: relative;
+  min-height: 70px;
   width: 100%;
   text-align: end;
   cursor: pointer;
+}
+
+.saves-container ul li > button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
   transition: background-color .2s;
 }
-.saves-container ul li:hover,
-.saves-container ul li:focus   {
+.saves-container ul li:hover > button,
+.saves-container ul li > button:focus {
   background-color: #c3c3c3;
 }
 

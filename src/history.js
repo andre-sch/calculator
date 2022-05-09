@@ -32,14 +32,23 @@ const calculatorHistory = {
 
     this.list.forEach((save, index) => {
       const listItem = document.createElement('li')
-      listItem.tabIndex = 0
+      const displayButton = document.createElement('button')
 
-      listItem.innerHTML =
-        `<pre>${save.operation}</pre>` +
-        `<output>${save.current}</output>`
-
-      listItem.onclick = () => calculatorHistory.displaySave(index)
+      displayButton.onclick = () => calculatorHistory.displaySave(index)
+      listItem.appendChild(displayButton)
       
+      const pre = document.createElement('pre')
+      const output = document.createElement('output')
+      
+      pre.textContent = save.operation
+      output.textContent = save.current
+
+      const elementsToDisableDrag = [pre, output]
+      elementsToDisableDrag.forEach(element => takeOutDrag(element))
+
+      listItem.appendChild(pre)
+      listItem.appendChild(document.createElement('br'))
+      listItem.appendChild(output)
       calculatorHistory.listContainer.appendChild(listItem)
     })
   },

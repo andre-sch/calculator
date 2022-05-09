@@ -1,5 +1,5 @@
 .history .saves-container ul li {
-  padding: 7px 15px 2px;
+  padding: 7px 15px 2px 5px;
 }
 
 .history .saves-container li + li {
@@ -7,13 +7,18 @@
 }
 
 .history .saves-container li pre {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 6px;
   font-size: 14px;
   font-weight: 300;
+  white-space: pre-wrap;
+  word-break: break-all;
   color: var(--black);
 }
 
 .history .saves-container li output {
-  margin-top: 6px;
+  position: relative;
   font-size: 24px;
   font-weight: 500;
 }
