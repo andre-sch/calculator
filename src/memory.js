@@ -14,14 +14,16 @@ const memory = {
 
     memory.list.forEach((save, listItemIndex) => {
       const listItem = document.createElement('li')
-      listItem.tabIndex = 0
 
-      listItem.onclick = event => memory.listItemRecall(event, listItemIndex)
-      listItem.onkeydown = event => {
-        if (event.key == 'Enter') memory.listItemRecall(event,listItemIndex)
-      }
+      const recallButton = document.createElement('button')
+      recallButton.onclick = () => memory.listItemRecall(listItemIndex)
+      
+      const output = document.createElement('output')
+      output.textContent = save
+      takeOutDrag(output)
 
-      listItem.innerHTML = `<output>${save}</output>`
+      listItem.appendChild(recallButton)
+      listItem.appendChild(output)
 
       const actionsContainer = document.createElement('div')
       actionsContainer.className = 'memory-actions'
@@ -30,7 +32,11 @@ const memory = {
       actionFunctions.forEach((action, actionIndex) => {
         const actionButton = document.createElement('button')
         actionButton.textContent = memory.buttonsContent[actionIndex]
-        actionButton.onclick = () => action(listItemIndex)
+        actionButton.onclick = () => {
+          actionButton.onmouseleave()
+          actionButton.blur()
+          action(listItemIndex)
+        }
 
         var displayTooltipTimeout
         actionButton.onmouseenter = () => displayTooltipTimeout =
@@ -67,7 +73,9 @@ const memory = {
   },
   replaceSavedValue(index) {
     const targetListItem = memory.listContainer.children[index]
-    targetListItem.firstChild.textContent = memory.list[index]
+    targetListItem.childNodes.forEach(child => {
+      if (child.tagName == 'OUTPUT') child.textContent = memory.list[index]
+    })
   },
   clear(index) {
     if (index != undefined && memory.list.length > 1) {
@@ -95,14 +103,12 @@ const memory = {
     if (entry.previous) {
       operation.clearContentAfterSign()
     } else if (operationContainer.textContent.includes('=')) {
-      operationContainer.textContent = ''
+      operation.setContainerTextContent('')
     }
   },
-  listItemRecall(event, index) {
-    if (event.target.parentNode.className != 'memory-actions') {
-      memory.recall(index)
-      toggleDisplay.memory()
-    }
+  listItemRecall(index) {
+    memory.recall(index)
+    toggleDisplay.memory()
   },
   plus(index = 0) {
     const isFirstInput = memory.list.length == 0
