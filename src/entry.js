@@ -20,8 +20,6 @@ const entry = {
     const MAX_LENGTH = 16
     const cleanedCurrentEntry = entry.current.replace(/[-\.]|(?<=\b)0\.|e.+/g, '')
 
-    if (cleanedCurrentEntry.length == MAX_LENGTH) return
-    
     if (entry.isOverwritingEnabled) {
       entry.isOverwritingEnabled = false
       
@@ -43,6 +41,8 @@ const entry = {
       entry.setNewAttributes()
     }
     else {
+      if (cleanedCurrentEntry.length == MAX_LENGTH) return
+
       if (character == '.') {
         if (entry.isDecimalNumber) return 
         else entry.isDecimalNumber = true
