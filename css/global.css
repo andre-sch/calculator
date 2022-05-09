@@ -10,6 +10,13 @@
   user-select: none;
 }
 
+output, pre {
+  cursor: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
 ul {
   list-style: none;
 }
