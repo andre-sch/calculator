@@ -328,6 +328,12 @@
       entry.previous = null
       entry.clear()
     }
+
+    document.querySelectorAll('img').forEach(images => images.draggable = false)
+    takeOutDrag(document.querySelector('.equation output'))
+    function takeOutDrag(element) {
+      element.addEventListener('dragstart', event => event.preventDefault())
+    }
   </script>
 </body>
 </html>
