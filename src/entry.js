@@ -1,4 +1,5 @@
 const output = document.querySelector('.equation output')
+const outputMeasure = document.querySelector('.output-measure')
 
 const entry = {
   isNegativeNumber: false,
@@ -78,6 +79,8 @@ const entry = {
   showCurrent() {
     const formattedCurrentEntry = entry.addThousandsSeparator()
     output.value = formattedCurrentEntry 
+    outputMeasure.value = formattedCurrentEntry
+    entry.adjustOutputFontSize()
   },
   addThousandsSeparator() {
     if (entry.current.includes('e')) return entry.current
@@ -110,6 +113,16 @@ const entry = {
     var formattedCurrentEntry = separatedCharacters.join('')
     if (entry.isDecimalNumber) formattedCurrentEntry += `.${decimalPart || ''}`
     return formattedCurrentEntry
+  },
+  adjustOutputFontSize() {
+    outputMeasure.style.fontSize = '2.25rem'
+    var size = 225
+    
+    while (outputMeasure.offsetWidth > 326) {
+      size = size - 5
+      outputMeasure.style.fontSize = (size / 100) + 'rem'
+    }
+    output.style.fontSize = (size / 100) + 'rem'
   },
   setNewAttributes() {
     if (entry.current.startsWith('-')) entry.isNegativeNumber = true
