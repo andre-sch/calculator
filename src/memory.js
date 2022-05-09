@@ -84,6 +84,7 @@ const memory = {
       setTimeout(() => memory.populateCard(), 800)
     } else {
       cards.memory.classList.add('empty')
+      memory.listContainer.innerHTML = ''
       memory.list = []
 
       if (toggleDisplay.isExpanded.memory) {
