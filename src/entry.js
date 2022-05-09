@@ -29,7 +29,7 @@ const entry = {
       }
       else {
         if (operationContainer.textContent.includes('=')) {
-          operationContainer.textContent = ''
+          operation.setContainerTextContent('')
         }
         
         if (operation.hasMathFunction()) {
@@ -143,7 +143,7 @@ const entry = {
     if (entry.previous) {
       operation.clearContentAfterSign()
     } else if (operationContainer.textContent.includes('=')) {
-      operationContainer.textContent = ''
+      operation.setContainerTextContent('')
     }
 
     entry.current = '0'

@@ -59,7 +59,7 @@ const calculatorHistory = {
       current: savedCurrent
     } = this.list[index]
     
-    operationContainer.textContent = savedOperation
+    operation.setContainerTextContent(savedOperation)
     operation.last = ''
     this.operationSecondTerm = operationSecondTerm
 

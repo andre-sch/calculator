@@ -133,7 +133,17 @@
       </button>
     </header>
     <div class="equation">
+      <button onclick="operation.shiftContainerTextContent('left')">
+        <img
+          src="./assets/unlicensed/arrow.svg"
+          alt="see overflowed content on the left"
+          style="transform: rotateY(180deg);"
+        >
+      </button>
       <span class="operation"></span>
+      <button onclick="operation.shiftContainerTextContent('right')">
+        <img src="./assets/unlicensed/arrow.svg" alt="see overflowed content on the right">
+      </button>
       <output>0</output>
     </div>
     <div class="memory-row">
@@ -316,7 +326,11 @@
   <script>
     const bodyOverlay = document.querySelector('.body-overlay')
     const calculatorOverlay = document.querySelector('.calculator-overlay')
-    const tabNavigationButtons = document.querySelectorAll('header button, .memory-row button')
+    const tabNavigationButtons = document.querySelectorAll(
+      'header button, .equation button, .memory-row button'
+    )
+
+    const [leftArrow, rightArrow] = document.querySelectorAll('.equation button')
 
     const cards = {
       menu: document.querySelector('.menu-card'),

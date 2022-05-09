@@ -24,7 +24,7 @@ const operation = {
   mathFunctions: {
     multiplicativeInverse() {
       if (Number(entry.current) == 0) {
-        operationContainer.textContent = '1/( 0 )'
+        operation.setContainerTextContent('1/( 0 )')
         errorMode.display('Cannot divide by zero')
         return
       }
@@ -66,9 +66,9 @@ const operation = {
           !operationContainer.textContent.includes('=') &&
           !memory.hasBeenRecovered
         ) {
-          operationContainer.textContent = `${mathFunction}( ${operationContainer.textContent} )`
+          operation.setContainerTextContent(`${mathFunction}( ${operationContainer.textContent} )`)
         } else {
-          operationContainer.textContent = `${mathFunction}( ${Number(entry.current)} )`
+          operation.setContainerTextContent(`${mathFunction}( ${Number(entry.current)} )`)
         }
       }
       else {
@@ -82,7 +82,7 @@ const operation = {
         else {
           var newContentAfterSign = ` ${mathFunction}( ${Number(entry.current)} )`
         }
-        operationContainer.textContent += newContentAfterSign
+        operation.setContainerTextContent(operationContainer.textContent + newContentAfterSign)
       }
     }
   },
@@ -105,9 +105,9 @@ const operation = {
     return operation.matchContentAfterSign.test(operationContainer.textContent)
   },
   clearContentAfterSign() {
-    operationContainer.textContent = operationContainer.textContent.replace(
+    operation.setContainerTextContent(operationContainer.textContent.replace(
       operation.matchContentAfterSign, ''
-    )
+    ))
   },
   percentage() {
     var operationName, relativeValue
@@ -119,7 +119,7 @@ const operation = {
         relativeValue = Number(entry.current)
       } else {
         entry.clear()
-        operationContainer.textContent = '0'
+        operation.setContainerTextContent('0')
         return
       }
     }
@@ -138,8 +138,8 @@ const operation = {
       (Number(entry.current) / 100)
 
     if (operationContainer.textContent.includes('=')) {
-      operationContainer.textContent = result
-    } else operationContainer.textContent += result
+      operation.setContainerTextContent(result)
+    } else operation.setContainerTextContent(operationContainer.textContent + result)
 
     operation.end(result)
     entry.isOverwritingEnabled = true
@@ -149,9 +149,9 @@ const operation = {
     if (entry.previous == null) {
       operation.end(Number(entry.current))
       if (operation.hasMathFunction() && !operationContainer.textContent.includes('=')) {
-        operationContainer.textContent += ` ${sign}`
+        operation.setContainerTextContent(`${operationContainer.textContent} ${sign}`)
       }
-      else operationContainer.textContent = `${entry.current} ${sign}`
+      else operation.setContainerTextContent(`${entry.current} ${sign}`)
     }
     else {
       if (
@@ -169,10 +169,11 @@ const operation = {
 
         calculatorHistory.addNewSave()
 
-        operationContainer.textContent = `${Number(entry.current)} ${sign}`
+        operation.setContainerTextContent(`${Number(entry.current)} ${sign}`)
       } else if (operation.basic[operation.last].sign != sign) {
-        operationContainer.textContent = operationContainer.textContent
+        operation.setContainerTextContent(operationContainer.textContent
           .replace(operation.basic[operation.last].sign, sign)
+        )
       }
     }
     entry.savePrevious()
@@ -184,8 +185,9 @@ const operation = {
         const sign = operation.getSign()
         const operationName = operation.getNameOfBasic(sign)
 
-        operationContainer.textContent =
+        operation.setContainerTextContent(
           `${entry.current} ${sign} ${calculatorHistory.operationSecondTerm} =`
+        )
 
         const result = operation.basic[operationName].execute(
           Number(entry.current),
@@ -194,14 +196,18 @@ const operation = {
         operation.end(result)
       } else {
         if (operation.hasMathFunction() && !operationContainer.textContent.includes('=')) {
-          operationContainer.textContent += ' ='
-        } else operationContainer.textContent = `${Number(entry.current)} =`
+          operation.setContainerTextContent(`${operationContainer.textContent} =`)
+        } else operation.setContainerTextContent(`${Number(entry.current)} =`)
       }
     }
     else {
       if (operation.hasContentAfterSign()) {
-        operationContainer.textContent += ' ='
-      } else operationContainer.textContent += ` ${Number(entry.current)} =`
+        operation.setContainerTextContent(`${operationContainer.textContent} =`)
+      } else {
+        operation.setContainerTextContent(
+          `${operationContainer.textContent} ${Number(entry.current)} =`
+        )
+      }
       
       if (operation.checkDivisionByZero()) return
 
@@ -218,7 +224,7 @@ const operation = {
   },
   checkDivisionByZero() {
     if (operation.last == 'division' && Number(entry.current) == 0) {
-      operationContainer.textContent = `${entry.previous} ÷ 0`
+      operation.setContainerTextContent(`${entry.previous} ÷ 0`)
 
       if (entry.previous == '0') errorMode.display('Result is undefined')
       else errorMode.display('Cannot divide by zero')
@@ -251,8 +257,42 @@ const operation = {
       }
     } else return result.toString()
   },
+  setContainerTextContent(content) {
+    operationContainer.textContent = content
+    operationContainer.style.left = '0px'
+    rightArrow.style.display = 'none'
+
+    const CONTAINER_WIDTH = 316
+
+    if (operationContainer.offsetWidth > CONTAINER_WIDTH) {
+      leftArrow.style.display = 'block'
+    } else leftArrow.style.display = 'none'
+  },
+  shiftContainerTextContent(sense) {
+    const rightShift = Number(getComputedStyle(operationContainer).left.replace('px', ''))
+    const MAX_SHIFT = 300
+    const DISPLAYED_CONTENT_WIDTH = 325
+    const MAX_LEFT = operationContainer.offsetWidth - DISPLAYED_CONTENT_WIDTH
+
+    if (sense == 'left') {
+      rightArrow.style.display = 'block'
+      var nextShift = rightShift + MAX_SHIFT
+      if (nextShift >= MAX_LEFT) {
+        leftArrow.style.display = 'none'
+        nextShift = MAX_LEFT
+      }
+    } else {
+      leftArrow.style.display = 'block'
+      var nextShift = rightShift - MAX_SHIFT
+      if (nextShift <= 0) {
+        rightArrow.style.display = 'none'
+        nextShift = 0
+      }
+    }
+    operationContainer.style.left = nextShift + 'px'
+  },
   clear() {
-    operationContainer.textContent = ''
+    operation.setContainerTextContent('')
     operation.last = ''
   }
 }

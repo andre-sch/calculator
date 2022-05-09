@@ -76,14 +76,35 @@ header h1 {
 }
 
 .equation {
-  margin: 0 15px;
-  text-align: right;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 0 15px;
 }
+
+.equation button {
+  display: none;
+  position: absolute;
+  height: 20px;
+  z-index: 1;
+}
+.equation button:first-of-type {left: 0;}
+.equation button:last-of-type {right: 0;}
+.equation button:hover {
+  filter: brightness(.9);
+}
+
 .equation span {
+  position: relative;
+  left: 0;
   display: inline-block;
+  height: 19px;
   font-size: 0.875rem;
   font-weight: 300;
   color: var(--keyboard-text);
+  white-space: nowrap;
+  transition: left .4s;
 }
 .equation output, .output-measure {
   display: block;
