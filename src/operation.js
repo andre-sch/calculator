@@ -148,7 +148,11 @@ const operation = {
     const sign = operation.basic[name].sign
     if (entry.previous == null) {
       operation.end(Number(entry.current))
-      if (operation.hasMathFunction() && !operationContainer.textContent.includes('=')) {
+      if (
+        operation.hasMathFunction() &&
+        entry.isOverwritingEnabled &&
+        !operationContainer.textContent.includes('=')
+      ) {
         operation.setContainerTextContent(`${operationContainer.textContent} ${sign}`)
       }
       else operation.setContainerTextContent(`${entry.current} ${sign}`)
