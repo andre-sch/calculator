@@ -117,8 +117,8 @@ const entry = {
   adjustOutputFontSize() {
     outputMeasure.style.fontSize = '2.25rem'
     var size = 225
-    
-    while (outputMeasure.offsetWidth > 326) {
+
+    while (outputMeasure.offsetWidth > operation.getContainerWidth()) {
       size = size - 5
       outputMeasure.style.fontSize = (size / 100) + 'rem'
     }

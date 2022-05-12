@@ -350,6 +350,11 @@
     function takeOutDrag(element) {
       element.addEventListener('dragstart', event => event.preventDefault())
     }
+
+    window.onresize = () => {
+      operation.setContainerTextContent(document.querySelector('.operation').textContent)
+      entry.adjustOutputFontSize()
+    }
   </script>
 </body>
 </html>

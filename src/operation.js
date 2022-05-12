@@ -263,29 +263,31 @@ const operation = {
       }
     } else return result.toString()
   },
+  getContainerWidth() {
+    const rootFontSize = getComputedStyle(document.documentElement).fontSize
+    const rem = Number(rootFontSize.replace('px', ''))
+    return document.querySelector('.equation').offsetWidth - 2 * rem
+  },
   setContainerTextContent(content) {
     operationContainer.textContent = content
     operationContainer.style.left = '0px'
     rightArrow.style.display = 'none'
 
-    const CONTAINER_WIDTH = 316
-
-    if (operationContainer.offsetWidth > CONTAINER_WIDTH) {
+    if (operationContainer.offsetWidth > operation.getContainerWidth()) {
       leftArrow.style.display = 'block'
     } else leftArrow.style.display = 'none'
   },
   shiftContainerTextContent(sense) {
     const rightShift = Number(getComputedStyle(operationContainer).left.replace('px', ''))
+    const maxRight = operationContainer.offsetWidth - operation.getContainerWidth()
     const MAX_SHIFT = 300
-    const DISPLAYED_CONTENT_WIDTH = 325
-    const MAX_LEFT = operationContainer.offsetWidth - DISPLAYED_CONTENT_WIDTH
 
     if (sense == 'left') {
       rightArrow.style.display = 'block'
       var nextShift = rightShift + MAX_SHIFT
-      if (nextShift >= MAX_LEFT) {
+      if (nextShift >= maxRight) {
         leftArrow.style.display = 'none'
-        nextShift = MAX_LEFT
+        nextShift = maxRight
       }
     } else {
       leftArrow.style.display = 'block'
