@@ -62,10 +62,6 @@ output {
 }
 
 body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
   background-color: #292323;
 }
 
@@ -82,4 +78,22 @@ button:disabled {
 	overflow: scroll;
 	position: absolute;
 	top: -9999px;
+}
+
+@media (max-width: 330px) {
+  html {
+    font-size: 90%;
+  }
+  img {
+    transform: scale(.9, .9);
+  }
+}
+
+@media (max-width: 300px) {
+  html {
+    font-size: 80%;
+  }
+  img {
+    transform: scale(.8, .8);
+  }
 }

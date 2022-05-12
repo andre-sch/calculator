@@ -11,9 +11,11 @@
 
 .calculator-container {
   position: relative;
-  width: 356px;
+  margin: max(calc(calc(100vh - 534.5px) / 2), 0px) auto;
+  width: min(100vw, 356px);
+  min-width: 255px;
   background: var(--background);
-  border-radius: 8px;
+  border-radius: 0.5rem;
   overflow: hidden;
 }
 
@@ -25,15 +27,15 @@
   width: 100%;
   height: 100%;
   background-color: rgba(16, 16, 16, .35);
-  border-radius: 8px;
+  border-radius: 0.5rem;
   cursor: pointer;
   z-index: 4;
 }
 
 .calculator-container > p {
-  margin: 8px 15px;
+  margin: 0.5rem 1rem;
   font-weight: 400;
-  font-size: .75rem;
+  font-size: 0.75rem;
   color: #7B6A6A;
 }
 
@@ -43,8 +45,8 @@ header, header button {
 }
 
 header {
-  margin-left: calc(45px + 7px);
-  height: 45px;
+  margin-left: calc(2.8rem + 0.5rem);
+  height: 2.8rem;
   justify-content: space-between;
 }
 
@@ -58,15 +60,15 @@ header button:hover, .clear-saves:hover {
  
 header .menu {
   position: absolute;
-  top: 32px;
+  top: 2rem;
   left: 0;
-  width: 45px;
-  height: 45px;
+  width: 2.8rem;
+  height: 2.8rem;
   z-index: 3;
 }
 header .history {
-  width: 40px;
-  height: 40px;
+  width: 2.5rem;
+  height: 2.5rem;
 }
 
 header h1 {
@@ -80,13 +82,13 @@ header h1 {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  padding: 0 15px;
+  padding: 0 1rem;
 }
 
 .equation button {
   display: none;
   position: absolute;
-  height: 20px;
+  height: 1.25rem;
   z-index: 1;
 }
 .equation button:first-of-type {left: 0;}
@@ -99,7 +101,7 @@ header h1 {
   position: relative;
   left: 0;
   display: inline-block;
-  height: 19px;
+  height: 1.25rem;
   font-size: 0.875rem;
   font-weight: 300;
   color: var(--keyboard-text);
@@ -108,7 +110,7 @@ header h1 {
 }
 .equation output, .output-measure {
   display: block;
-  height: 55px;
+  height: 3.375rem;
   font-size: 2.25rem;
   font-weight: 500;
   color: var(--black);
@@ -120,14 +122,14 @@ header h1 {
 }
 
 .memory-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 10px 15px 2px;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0.125rem;
+  width: 20.25rem;
+  margin: 0.625rem auto 0.125rem;
 }
 .memory-row button {
-  width: 51px;
-  height: 31px;
+  height: 2rem;
   font-size: 0.875rem;
   font-weight: 600;
   color: var(--keyboard-text);
@@ -147,21 +149,21 @@ header h1 {
 .keyboard {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: 55px;
-  gap: 2px;
-  padding: 0 5px 5px;
+  grid-auto-rows: 3.375rem;
+  gap: 0.125rem;
+  padding: 0 0.3rem 0.3rem;
 }
 
 .keyboard button {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
+  font-size: 1.5rem;
   color: var(--keyboard-text);
   transition: box-shadow .1s, filter .1s;
 }
 .keyboard button.clear {
-  font-size: 18px;
+  font-size: 1.125rem;
 }
 
 .keyboard button:disabled {
