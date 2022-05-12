@@ -237,6 +237,8 @@ const operation = {
     }
   },
   end(result) {
+    if (!Number.isFinite(result)) return errorMode.display('Overflow')
+
     entry.current = operation.formatResult(result)
     entry.setNewAttributes()
     entry.showCurrent()
