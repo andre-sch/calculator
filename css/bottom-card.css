@@ -55,10 +55,6 @@
   height: 100%;
   transition: background-color .2s;
 }
-.saves-container ul li:hover > button,
-.saves-container ul li > button:focus {
-  background-color: #c3c3c3;
-}
 
 .bottom-card .clear-saves {
   position: absolute;
@@ -87,5 +83,12 @@
   }
   to {
     top: calc(100% + 21.5rem);
+  }
+}
+
+@media (hover:hover) {
+  .saves-container ul li:hover > button,
+  .saves-container ul li > button:focus {
+    background-color: #c3c3c3;
   }
 }

@@ -42,9 +42,6 @@ section ul li .unavailable {
   font-size: 0.8125rem;
   font-weight: 400;
 }
-section ul li button:hover {
-  background-color: #d1d1d1;
-}
 
 section ul li button.current-mode::before {
   content: '';
@@ -75,5 +72,11 @@ section ul li .unavailable img {
   }
   to {
     left: -500px;
+  }
+}
+
+@media (hover: hover) {
+  section ul li button:hover {
+    background-color: #d1d1d1;
   }
 }

@@ -53,10 +53,6 @@ header {
 header button {
   justify-content: center;
 }
-header button:hover, .clear-saves:hover {
-  background-color: rgba(0, 0, 0, .05);
-  box-shadow: inset 0 0 1px 1px rgba(0, 0, 0, .1);
-}
  
 header .menu {
   position: absolute;
@@ -93,9 +89,6 @@ header h1 {
 }
 .equation button:first-of-type {left: 0;}
 .equation button:last-of-type {right: 0;}
-.equation button:hover {
-  filter: brightness(.9);
-}
 
 .equation span {
   position: relative;
@@ -185,17 +178,28 @@ header h1 {
   background-color: var(--dark-gray);
 }
 
-.memory-row button:not(:disabled):hover {
-  background-color: rgba(0, 0, 0, .05);
-}
-.keyboard button:not(:disabled):hover,
-.keyboard-hover:not(:disabled) {
-  filter: brightness(.8);
-}
-.memory-row button:not(:disabled):hover,
-.keyboard button:not(:disabled):hover,
-.keyboard-hover:not(:disabled) {
-  box-shadow:
-    inset 0 0 1px 1px rgba(0, 0, 0, .15),
-    inset 0 0 10px 1px rgba(0, 0, 0, .025);
+@media(hover: hover) {
+  header button:hover, .clear-saves:hover {
+    background-color: rgba(0, 0, 0, .05);
+    box-shadow: inset 0 0 1px 1px rgba(0, 0, 0, .1);
+  }
+
+  .equation button:hover {
+    filter: brightness(.9);
+  }
+
+  .memory-row button:not(:disabled):hover {
+    background-color: rgba(0, 0, 0, .05);
+  }
+  .keyboard button:not(:disabled):hover,
+  .keyboard-hover:not(:disabled) {
+    filter: brightness(.8);
+  }
+  .memory-row button:not(:disabled):hover,
+  .keyboard button:not(:disabled):hover,
+  .keyboard-hover:not(:disabled) {
+    box-shadow:
+      inset 0 0 1px 1px rgba(0, 0, 0, .15),
+      inset 0 0 10px 1px rgba(0, 0, 0, .025);
+  }
 }

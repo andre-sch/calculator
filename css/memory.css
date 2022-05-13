@@ -19,22 +19,12 @@
   width: 7rem;
   height: 1.75rem;
 }
-.memory .saves-container li:hover .memory-actions {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.125rem;
-}
 
 .memory-actions button {
   font-size: 0.75rem;
   font-weight: 700;
   color: var(--keyboard-text);
   background-color: #ffffff;
-}
-.memory-actions button:hover,
-.memory-actions button:focus {
-  color: #ffffff;
-  background-color: var(--keyboard-text);
 }
 
 .memory-actions .tooltip {
@@ -58,11 +48,6 @@
 .memory-actions .tooltip.action-1 {left: -0.5625rem;}
 .memory-actions .tooltip.action-2 {right: -0.5625rem;}
 
-.memory-actions button:hover + .tooltip {
-  opacity: 1;
-  transition: opacity .1s linear 1.2s;
-}
-
 @keyframes deleting-element {
   to {
     margin: 0;
@@ -73,5 +58,24 @@
 @keyframes removing-margin {
   to {
     margin: 0;
+  }
+}
+
+@media (hover: hover) {
+  .memory .saves-container li:hover .memory-actions {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.125rem;
+  }
+
+  .memory-actions button:hover,
+  .memory-actions button:focus {
+    color: #ffffff;
+    background-color: var(--keyboard-text);
+  }
+
+  .memory-actions button:hover + .tooltip {
+    opacity: 1;
+    transition: opacity .1s linear 1.2s;
   }
 }
