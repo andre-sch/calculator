@@ -246,22 +246,23 @@ const operation = {
     memory.hasBeenRecovered = false
   },
   formatResult(result) {
-    const cleanedResult = result.toString().replace(/[-\.]|(?<=\b)0\./g, '')
-    var trailingZerosAfterDecimalPoint = result.toString().match(/\.(0+)/) ?
-      result.toString().match(/\.(0+)/)[1] : ''
-
-    if (cleanedResult.length > 16) {
-      if (result.toString().includes('e')) {
-        const trailingZeros = /0+(?=e)/
-        return result.toExponential(15).replace(trailingZeros, '')
-      }
-      else {
+    const output = result.toString()
+    if (/\.9+$/.test(result) && output.length > 16) return Number(output.split('.')[0]) + 1
+    const trailingZerosAfterDecimalPoint = output.match(/\.(0+)/) ?
+      output.match(/\.(0+)/)[1] : ''
+  
+    if (output.includes('e-')) {
+      const outputDigits = output.replace(/e.*/, '').match(/\d/g).join('')
+      const fixedDigits = result.toFixed(16).match(/\d/g).join('')
+  
+      if (fixedDigits.includes(outputDigits)) {
         const trailingZeros = /(?<=\..*?)0+$/
-        return result
-          .toPrecision(16 - trailingZerosAfterDecimalPoint.length)
-          .replace(trailingZeros, '')
+        return result.toFixed(16).replace(trailingZeros, '')
       }
-    } else return result.toString()
+    }
+    return Number(
+      result.toPrecision(16 - trailingZerosAfterDecimalPoint.length)
+    ).toString().replace(/000000+1$/, '')
   },
   getContainerWidth() {
     const rootFontSize = getComputedStyle(document.documentElement).fontSize
