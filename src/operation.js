@@ -137,12 +137,12 @@ const operation = {
       (isPercentageRelativeToPreviousEntry ? relativeValue : 1) *
       (Number(entry.current) / 100)
 
-    if (operationContainer.textContent.includes('=')) {
-      operation.setContainerTextContent(result)
-    } else operation.setContainerTextContent(operationContainer.textContent + result)
-
     operation.end(result)
     entry.isOverwritingEnabled = true
+
+    if (operationContainer.textContent.includes('=')) {
+      operation.setContainerTextContent(entry.current)
+    } else operation.setContainerTextContent(operationContainer.textContent + entry.current)
   },
   doBasic(name) {
     const sign = operation.basic[name].sign
