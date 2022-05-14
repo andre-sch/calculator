@@ -19,7 +19,7 @@ const entry = {
   },
   addCharacter(character) {
     const MAX_LENGTH = 16
-    const cleanedCurrentEntry = entry.current.replace(/[-\.]|(?<=\b)0\.|e.+/g, '')
+    const cleanedCurrentEntry = entry.current.replace(/[-\.]|\b0\.|e.+/g, '')
 
     if (entry.isOverwritingEnabled) {
       entry.isOverwritingEnabled = false

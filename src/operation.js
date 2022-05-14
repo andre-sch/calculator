@@ -2,7 +2,6 @@ const operationContainer = document.querySelector('.operation')
 
 const operation = {
   last: '',
-  matchContentAfterSign: /(?<=\s[-+×÷])(?=\s).+/,
   basic: {
     addition: {
       sign: '+',
@@ -72,12 +71,11 @@ const operation = {
         }
       }
       else {
-        const matchContent = operationContainer.textContent
-          .match(operation.matchContentAfterSign)
+        const contentAfterSign = operation.getContentAfterSign(operationContainer.textContent)
         operation.clearContentAfterSign()
 
-        if (matchContent) {
-          var newContentAfterSign = ` ${mathFunction}(${matchContent[0]} )`
+        if (contentAfterSign) {
+          var newContentAfterSign = ` ${mathFunction}(${contentAfterSign} )`
         }
         else {
           var newContentAfterSign = ` ${mathFunction}( ${Number(entry.current)} )`
@@ -100,14 +98,17 @@ const operation = {
     }
     return ''
   },
-  hasMathFunction: () => /\(.*?\)/.test(operationContainer.textContent),
-  hasContentAfterSign() {
-    return operation.matchContentAfterSign.test(operationContainer.textContent)
+  getContentAfterSign(operationText) {
+    return operationText.match(/\s[-+×÷]\s(.+)/) ?
+      operationText.match(/\s[-+×÷]\s(.+)/)[1] : ''
   },
+  hasMathFunction: () => /\(.*?\)/.test(operationContainer.textContent),
+  hasContentAfterSign: () => /\s[-+×÷]\s(.+)/.test(operationContainer.textContent),
   clearContentAfterSign() {
-    operation.setContainerTextContent(operationContainer.textContent.replace(
-      operation.matchContentAfterSign, ''
-    ))
+    const contentAfterSign = operation.getContentAfterSign(operationContainer.textContent)
+    operation.setContainerTextContent(
+      operationContainer.textContent.replace(contentAfterSign, '')
+    )
   },
   percentage() {
     var operationName, relativeValue
@@ -256,8 +257,11 @@ const operation = {
       const fixedDigits = result.toFixed(16).match(/\d/g).join('')
   
       if (fixedDigits.includes(outputDigits)) {
-        const trailingZeros = /(?<=\..*?)0+$/
-        return result.toFixed(16).replace(trailingZeros, '')
+        const fixedResult = result.toFixed(16)
+        const trailingZeros = fixedResult.match(/\..*?(0+$)/) ?
+          fixedResult.match(/\..*?(0+$)/)[1] : ''
+  
+        return fixedResult.replace(trailingZeros, '')
       }
     }
     return Number(
