@@ -13,7 +13,7 @@ In addition, it also includes history of operations and memory actions.
 
 You can access this responsive website on desktop and mobile devices at [GitHub Pages Host](https://andre-sch.github.io/calculator/).
 
-[![Standard calculator and its cards: menu, history and memory](https://i.postimg.cc/X71y0dSv/Calculator-JS.png)](https://www.figma.com/file/I2acjLsxtk3Jgy38AD9qvB/Calculator)
+[![Standard calculator and its cards: menu, history and memory](https://github.com/andre-sch/calculatorJS/blob/master/assets/unlicensed/figma.png)](https://www.figma.com/file/I2acjLsxtk3Jgy38AD9qvB/Calculator)
 
 > Tap on image to see the project in figma
 
